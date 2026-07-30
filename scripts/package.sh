@@ -2,10 +2,14 @@
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-OUT="$ROOT/.artifacts/package/game"
+PACKAGE_ROOT="$ROOT/.artifacts/package"
+OUT="$PACKAGE_ROOT/game"
+INSTALLED_NOTICES="$OUT/sharp/SharpGameModes"
 
-rm -rf "$ROOT/.artifacts/package"
+rm -rf "$PACKAGE_ROOT"
 mkdir -p \
+    "$PACKAGE_ROOT/LICENSES" \
+    "$INSTALLED_NOTICES/LICENSES" \
     "$OUT/sharp/modules" \
     "$OUT/sharp/shared/SharpGameModes.Contracts" \
     "$OUT/sharp/shared/SharpGameModes.Domain" \
@@ -61,6 +65,12 @@ cp "$ROOT/config/sharp/configs/core.json" "$OUT/sharp/configs/"
 cp -R "$ROOT/config/sharp/data/sharp-gamemodes/cosmetics" "$OUT/sharp/data/sharp-gamemodes/"
 cp -R "$ROOT/config/csgo/cfg/sharp-gamemodes" "$OUT/csgo/cfg/"
 cp -R "$ROOT/config/csgo/overrides" "$OUT/csgo/"
+cp "$ROOT/LICENSE" "$PACKAGE_ROOT/LICENSE"
+cp "$ROOT/THIRD_PARTY_NOTICES.md" "$PACKAGE_ROOT/THIRD_PARTY_NOTICES.md"
+cp -R "$ROOT/LICENSES/." "$PACKAGE_ROOT/LICENSES/"
+cp "$ROOT/LICENSE" "$INSTALLED_NOTICES/LICENSE"
+cp "$ROOT/THIRD_PARTY_NOTICES.md" "$INSTALLED_NOTICES/THIRD_PARTY_NOTICES.md"
+cp -R "$ROOT/LICENSES/." "$INSTALLED_NOTICES/LICENSES/"
 
 find "$OUT/sharp/modules" -name 'Sharp.Shared.dll' -delete
 find "$OUT" -name '.DS_Store' -delete
@@ -86,6 +96,8 @@ test -f "$OUT/sharp/configs/sharp-gamemodes/botmatch-identities/bot_info.json"
 test -f "$OUT/sharp/configs/sharp-gamemodes/botmatch-identities/UPSTREAM-LICENSE"
 test -f "$OUT/sharp/configs/sharp-gamemodes/map-pools/botmatch.jsonc"
 test -f "$OUT/sharp/data/sharp-gamemodes/cosmetics/skins_en.json"
+test -f "$OUT/sharp/data/sharp-gamemodes/cosmetics/README.md"
+test -f "$OUT/sharp/data/sharp-gamemodes/cosmetics/UPSTREAM-LICENSE"
 test -f "$OUT/csgo/cfg/sharp-gamemodes/botmatch.cfg"
 test -f "$OUT/csgo/overrides/Low/botprofile.db"
 test -f "$OUT/csgo/overrides/Low/botprofile.vpk"
@@ -96,4 +108,10 @@ test -f "$OUT/csgo/overrides/HLTVTop10/botprofile.vpk"
 test -f "$OUT/csgo/overrides/High/botprofile.db"
 test -f "$OUT/csgo/overrides/High/botprofile.vpk"
 test -f "$OUT/csgo/overrides/UPSTREAM-LICENSE"
-printf 'Package ready: %s\n' "$OUT"
+test -f "$PACKAGE_ROOT/LICENSE"
+test -f "$PACKAGE_ROOT/THIRD_PARTY_NOTICES.md"
+test -f "$PACKAGE_ROOT/LICENSES/ModSharp-EXCEPTION.txt"
+test -f "$INSTALLED_NOTICES/LICENSE"
+test -f "$INSTALLED_NOTICES/THIRD_PARTY_NOTICES.md"
+test -f "$INSTALLED_NOTICES/LICENSES/Apache-2.0-SQLitePCLRaw.txt"
+printf 'Package ready: %s\n' "$PACKAGE_ROOT"

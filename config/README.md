@@ -26,4 +26,10 @@ private files blindly.
 
 Chat labels are configurable through each module's `prefix` field. PlayerModels
 uses `Prefix`, and RoleSound uses `ChatPrefix`. TDM and Zombie help-message
-templates accept `{prefix}`.
+templates accept `{prefix}`. The map-system source notice has its own
+`source_offer.prefix`; an empty value hides only the label, not the source
+message.
+
+`map-system.jsonc` also contains the public corresponding-source URL shown on
+join and by `!source`. Forks and modified deployments should update that URL to
+the exact source they make available to players.

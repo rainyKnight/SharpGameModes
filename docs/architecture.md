@@ -44,7 +44,7 @@ flowchart LR
 | `SharpGameModes.Contracts` | Shared mode-context interfaces and immutable DTOs | Game logic, file I/O, ModSharp APIs |
 | `SharpGameModes.Domain` | Map-pool validation, pure team-balancing algorithms, round statistics, and rating calculations | Server entities, hooks, timers, file I/O |
 | `SharpGameModes.Core` | Publishes a single `IModeContext` | Guessing the mode from a map or executing cfg files |
-| `SharpGameModes.MapSystem` | Loads mode map pools, activates a `map + mode` selection, and applies cfg files | Team balancing, infection rules, damage modification |
+| `SharpGameModes.MapSystem` | Loads mode map pools, activates a `map + mode` selection, applies cfg files, and presents the corresponding-source offer | Team balancing, infection rules, damage modification |
 | `SharpGameModes.PlayerData` | Manages SQLite, collects Classic round data, writes match results, and publishes ratings | Team assignment, health rules, map rules |
 | `SharpGameModes.AutoTeam` | Team selection locks, rating-based balance, and health compensation for Classic and TDM | Map voting, string-based mode detection, match-result persistence |
 | `SharpGameModes.Rules` | Shared damage-policy hooks | Mode gameplay |
@@ -64,6 +64,12 @@ The primary key for a map choice is `mode:map`, not the physical map name. Each 
 AutoTeam rules also belong to map pools. The top-level `auto_team` object defines mode defaults, while an `auto_team` object on a map provides a sparse override. `SharpGameModes.Domain` merges both layers while loading the pool, and `SharpGameModes.MapSystem` publishes the result in the immutable `MapSelection` snapshot. `SharpGameModes.AutoTeam` and `SharpGameModes.PlayerData` subscribe to that snapshot instead of rereading map pools or inferring modes independently. Global algorithm and persistence settings remain in `auto-team.jsonc` and `player-data.jsonc`.
 
 RTV, nominations, votes, and map-change state belong to `SharpGameModes.MapSystem`. Runtime state is atomically replaced at `sharp/data/sharp-gamemodes/map-system-state.json`, so a module hot reload does not lose an already selected next map. The next-map value is cleared only after the map changes and the new current mode has been committed.
+
+The AGPL corresponding-source notice also belongs to MapSystem because that
+module is active across every supported mode and already owns the common chat
+commands. It prints the configured URL after a human joins and on
+`!source`/`!源码`; it is timer-driven and performs no per-frame work. Modified
+deployments must point the URL at their own complete corresponding source.
 
 After a completed match, `SharpGameModes.PlayerData` publishes an immutable result. `SharpGameModes.AutoTeam` consumes that result to update its health-feedback state. Player statistics and SQLite storage therefore remain separate from health-balancing rules, while AutoTeam does not query the match database directly.
 

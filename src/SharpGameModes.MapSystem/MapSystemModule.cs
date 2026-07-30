@@ -176,7 +176,13 @@ public sealed class MapSystemModule : IModSharpModule, IGameListener, IClientLis
     {
         ScheduleWarmupRespawn(client, 0.8);
 
-        if (_vote is null || !IsHuman(client))
+        if (!IsHuman(client))
+        {
+            return;
+        }
+
+        ScheduleSourceOffer(client);
+        if (_vote is null)
         {
             return;
         }
@@ -232,6 +238,12 @@ public sealed class MapSystemModule : IModSharpModule, IGameListener, IClientLis
         var separator = normalized.IndexOf(' ');
         var alias = separator < 0 ? normalized : normalized[..separator];
         var argument = separator < 0 ? string.Empty : normalized[(separator + 1)..].Trim();
+        if (_config.SourceOffer.MatchesCommand(alias))
+        {
+            PrintSourceOffer(client);
+            return ECommandAction.Handled;
+        }
+
         switch (alias.ToLowerInvariant())
         {
             case "rtv":
@@ -1190,6 +1202,10 @@ public sealed class MapSystemModule : IModSharpModule, IGameListener, IClientLis
         _clients.InstallCommandCallback("revote", OnRevoteCommand);
         _clients.InstallCommandCallback("nextmap", OnNextMapCommand);
         _clients.InstallCommandCallback("maps", OnMapsCommand);
+        foreach (var command in _config.SourceOffer.Commands)
+        {
+            _clients.InstallCommandCallback(command.Trim().TrimStart('!', '！', '/'), OnSourceCommand);
+        }
     }
 
     private void RemoveCommands()
@@ -1201,6 +1217,10 @@ public sealed class MapSystemModule : IModSharpModule, IGameListener, IClientLis
         _clients.RemoveCommandCallback("revote", OnRevoteCommand);
         _clients.RemoveCommandCallback("nextmap", OnNextMapCommand);
         _clients.RemoveCommandCallback("maps", OnMapsCommand);
+        foreach (var command in _config.SourceOffer.Commands)
+        {
+            _clients.RemoveCommandCallback(command.Trim().TrimStart('!', '！', '/'), OnSourceCommand);
+        }
     }
 
     private ECommandAction OnRtvCommand(IGameClient client, StringCommand command)
@@ -1238,6 +1258,39 @@ public sealed class MapSystemModule : IModSharpModule, IGameListener, IClientLis
         OpenMapList(client);
         return ECommandAction.Handled;
     }
+
+    private ECommandAction OnSourceCommand(IGameClient client, StringCommand command)
+    {
+        if (IsHuman(client))
+        {
+            PrintSourceOffer(client);
+        }
+
+        return ECommandAction.Handled;
+    }
+
+    private void ScheduleSourceOffer(IGameClient client)
+    {
+        if (!_config.SourceOffer.ShowOnJoin)
+        {
+            return;
+        }
+
+        var generation = _lifecycleGeneration;
+        _modSharp.PushTimer(
+            () =>
+            {
+                if (!_stopping && generation == _lifecycleGeneration && IsHuman(client))
+                {
+                    PrintSourceOffer(client);
+                }
+            },
+            _config.SourceOffer.JoinDelaySeconds,
+            GameTimerFlags.StopOnMapEnd);
+    }
+
+    private void PrintSourceOffer(IGameClient client)
+        => PrintChat(client, _config.SourceOffer.FormatMessage());
 
     private void Print(IGameClient client, string message)
         => _panels.ShowMessage(client, message);

@@ -22,6 +22,17 @@
     "enabled": true,
     "page_size": 5
   },
+  // AGPL source offer. Forks and modified deployments should point this URL
+  // at the exact corresponding source they make available to players.
+  "source_offer": {
+    "show_on_join": true,
+    "join_delay_seconds": 8,
+    "url": "https://github.com/rainyKnight/SharpGameModes",
+    // Set prefix to an empty string to show the message without a label.
+    "prefix": "[SharpGameModes]",
+    "message": "Source code / 源码: {url}",
+    "commands": ["source", "源码"]
+  },
   "mode_auto_change_rules": {
     "classic": {
       "enabled": true,

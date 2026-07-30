@@ -65,7 +65,7 @@ Writing `userinfo` is unsafe on some CS2 builds, so the native `BOT` scoreboard 
 - .NET 10 SDK for building
 - The official ModSharp `AdminManager`, `CommandCenter`, `TargetingManager`, and `MenuManager` modules
 
-The release package contains the project modules, example configuration, BotProfile tiers, BotMatch data, and the matching official ClientPreferences modules. Install it into an existing CS2 server with ModSharp.
+The release package contains the project modules, example configuration, BotProfile tiers, BotMatch data, the matching official ClientPreferences modules, and all project and third-party license notices. Install it into an existing CS2 server with ModSharp.
 
 ## Build
 
@@ -75,7 +75,7 @@ The release package contains the project modules, example configuration, BotProf
 ./scripts/package.sh
 ```
 
-The deployable tree is generated at `.artifacts/package/game/` and mirrors the CS2 server's `game/` directory.
+The release tree is generated at `.artifacts/package/`. Its `game/` directory mirrors the CS2 server's `game/` directory, while the archive root and installed `game/sharp/SharpGameModes/` directory both preserve the license notices.
 
 ## Configuration
 
@@ -99,6 +99,7 @@ Module labels are read from configuration:
 | Cosmetics | `cosmetics.jsonc` → `prefix` |
 | TeamDeathmatch | `tdm.jsonc` → `prefix` |
 | ZombieInfection | `zombie.jsonc` → `prefix` |
+| Map-system source offer | `map-system.jsonc` → `source_offer.prefix` |
 | PlayerModels | `player-models.jsonc` → `Prefix` |
 | RoleSound | `rolesound.jsonc` → `ChatPrefix` |
 
@@ -109,6 +110,7 @@ See [`config/README.md`](config/README.md) for configuration details and [`docs/
 ## Common commands
 
 - Maps: `!rtv`, `!yd`, `!ydc`, `!revote`, `!nextmap`, `!maps`
+- Corresponding source: `!source` or `!源码`
 - Player models: `!model`, `!md`, `!mg`, `!skin`
 - Weapon cosmetics: `!s`, `!k`
 - TDM and Zombie weapons: `!guns`
@@ -122,11 +124,24 @@ Administrative commands use ModSharp's AdminManager and TargetingManager. Team-m
 
 ## License and attribution
 
-SharpGameModes is released under the [GNU AGPL v3](LICENSE).
+SharpGameModes is released under the
+[GNU Affero General Public License version 3 only](LICENSE)
+(`AGPL-3.0-only`).
 
-Parts of the BotMatch algorithms and data originate from:
+The default map-system configuration presents the corresponding-source URL to
+players after they join and through `!source`. Anyone distributing or running
+a modified version should publish its complete corresponding source and change
+`source_offer.url` to that location.
 
-- [`ed0ard/CS2-Bot-Improver`](https://github.com/ed0ard/CS2-Bot-Improver)
-- [`XBribo/CS2-Bot-Hider`](https://github.com/XBribo/CS2-Bot-Hider)
+BotMatch ports and modifies code or data from
+[`ed0ard/CS2-Bot-Improver`](https://github.com/ed0ard/CS2-Bot-Improver),
+[`XBribo/CS2-Bot-Controller`](https://github.com/XBribo/CS2-Bot-Controller),
+and [`XBribo/CS2-Bot-Hider`](https://github.com/XBribo/CS2-Bot-Hider).
+The weapon-paint catalog comes from
+[`Nereziel/cs2-WeaponPaints`](https://github.com/Nereziel/cs2-WeaponPaints).
 
-The corresponding directories preserve the exact upstream commits, versions, and license texts. ModSharp and its official modules remain the property of their respective authors; the `vendor/` directory records the fixed files required by this build.
+Exact commits, component mappings, modification notices, dependency versions,
+and retained license texts are listed in
+[`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md). ModSharp and its official
+modules remain the property of their respective authors; the `vendor/`
+directory records only the fixed first-party files required by this build.

@@ -250,6 +250,7 @@ public sealed class ClassicConfigContractTests
         var root = document.RootElement;
         var vote = root.GetProperty("vote");
         var rtv = root.GetProperty("rtv");
+        var sourceOffer = root.GetProperty("source_offer");
         var classic = root.GetProperty("mode_auto_change_rules").GetProperty("classic");
         var tdm = root.GetProperty("mode_auto_change_rules").GetProperty("tdm");
         var zombie = root.GetProperty("mode_auto_change_rules").GetProperty("zombie");
@@ -261,6 +262,11 @@ public sealed class ClassicConfigContractTests
         Assert.Equal(30, rtv.GetProperty("initial_delay_seconds").GetInt32());
         Assert.Equal(0.5, rtv.GetProperty("required_ratio").GetDouble());
         Assert.Equal(5, root.GetProperty("nomination").GetProperty("page_size").GetInt32());
+        Assert.True(sourceOffer.GetProperty("show_on_join").GetBoolean());
+        Assert.Equal("https://github.com/rainyKnight/SharpGameModes", sourceOffer.GetProperty("url").GetString());
+        Assert.Contains(
+            "source",
+            sourceOffer.GetProperty("commands").EnumerateArray().Select(command => command.GetString()));
         Assert.Equal(8, classic.GetProperty("vote_start_round").GetInt32());
         Assert.Equal("rounds", tdm.GetProperty("auto_change_mode").GetString());
         Assert.Equal(1, tdm.GetProperty("vote_start_round").GetInt32());

@@ -11,6 +11,7 @@ public sealed class MapSystemConfig
     public MapChangeConfig MapChange { get; init; } = new();
     public RtvConfig Rtv { get; init; } = new();
     public NominationConfig Nomination { get; init; } = new();
+    public SourceOfferConfig SourceOffer { get; init; } = new();
     public Dictionary<string, ModeAutoChangeConfig> ModeAutoChangeRules { get; init; }
         = new(StringComparer.OrdinalIgnoreCase)
         {
@@ -29,6 +30,7 @@ public sealed class MapSystemConfig
         MapChange.Validate();
         Rtv.Validate();
         Nomination.Validate();
+        SourceOffer.Validate();
         foreach (var (rawMode, rule) in ModeAutoChangeRules)
         {
             _ = ModeId.Parse(rawMode);
@@ -102,6 +104,55 @@ public sealed class RtvConfig
             throw new InvalidDataException("rtv.cooldown_seconds_after_vote must be between 0 and 3600.");
         }
     }
+}
+
+public sealed class SourceOfferConfig
+{
+    public bool ShowOnJoin { get; init; } = true;
+    public double JoinDelaySeconds { get; init; } = 8;
+    public string Url { get; init; } = "https://github.com/rainyKnight/SharpGameModes";
+    public string Prefix { get; init; } = "[SharpGameModes]";
+    public string Message { get; init; } = "Source code / 源码: {url}";
+    public string[] Commands { get; init; } = ["source", "源码"];
+
+    public void Validate()
+    {
+        if (!double.IsFinite(JoinDelaySeconds) || JoinDelaySeconds is < 0 or > 120)
+        {
+            throw new InvalidDataException("source_offer.join_delay_seconds must be between 0 and 120.");
+        }
+
+        ArgumentException.ThrowIfNullOrWhiteSpace(Url);
+        ArgumentException.ThrowIfNullOrWhiteSpace(Message);
+        if (!Message.Contains("{url}", StringComparison.OrdinalIgnoreCase))
+        {
+            throw new InvalidDataException("source_offer.message must contain the {url} placeholder.");
+        }
+
+        if (Commands is null
+            || Commands.Length == 0
+            || Commands.Any(string.IsNullOrWhiteSpace)
+            || Commands.Select(NormalizeCommand).Distinct(StringComparer.OrdinalIgnoreCase).Count() != Commands.Length)
+        {
+            throw new InvalidDataException("source_offer.commands must contain unique, non-empty command names.");
+        }
+    }
+
+    public bool MatchesCommand(string command)
+        => Commands.Any(candidate => NormalizeCommand(candidate).Equals(
+            NormalizeCommand(command),
+            StringComparison.OrdinalIgnoreCase));
+
+    public string FormatMessage()
+    {
+        var message = Message.Replace("{url}", Url.Trim(), StringComparison.OrdinalIgnoreCase).Trim();
+        return string.IsNullOrWhiteSpace(Prefix)
+            ? message
+            : $"{Prefix.Trim()} {message}";
+    }
+
+    private static string NormalizeCommand(string command)
+        => command.Trim().TrimStart('!', '！', '/');
 }
 
 public sealed class NominationConfig
