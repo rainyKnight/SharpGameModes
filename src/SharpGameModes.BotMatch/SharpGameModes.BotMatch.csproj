@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <AssemblyName>SharpGameModes.BotMatch</AssemblyName>
+    <RootNamespace>SharpGameModes.BotMatch</RootNamespace>
+    <Description>Pure ModSharp enhanced bot-match mode with AI, economy, identity and grenade systems.</Description>
+    <EnableDynamicLoading>true</EnableDynamicLoading>
+    <PlatformTarget>x64</PlatformTarget>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="ModSharp.Sharp.Shared" PrivateAssets="all" ExcludeAssets="runtime" />
+    <ProjectReference Include="../SharpGameModes.Contracts/SharpGameModes.Contracts.csproj" Private="false" ExcludeAssets="runtime" />
+  </ItemGroup>
+</Project>

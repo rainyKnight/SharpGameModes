@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <AssemblyName>SharpGameModes.Domain</AssemblyName>
+    <RootNamespace>SharpGameModes.Domain</RootNamespace>
+    <Description>Framework-independent game-mode rules and configuration models.</Description>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../SharpGameModes.Contracts/SharpGameModes.Contracts.csproj" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,33 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/SharpGameModes.AutoTeam/SharpGameModes.AutoTeam.csproj" />
+    <Project Path="src/SharpGameModes.BotMatch/SharpGameModes.BotMatch.csproj" />
+    <Project Path="src/SharpGameModes.Contracts/SharpGameModes.Contracts.csproj" />
+    <Project Path="src/SharpGameModes.Core/SharpGameModes.Core.csproj" />
+    <Project Path="src/SharpGameModes.Cosmetics.Storage/SharpGameModes.Cosmetics.Storage.csproj" />
+    <Project Path="src/SharpGameModes.Cosmetics/SharpGameModes.Cosmetics.csproj" />
+    <Project Path="src/SharpGameModes.Domain/SharpGameModes.Domain.csproj" />
+    <Project Path="src/SharpGameModes.MapSystem/SharpGameModes.MapSystem.csproj" />
+    <Project Path="src/SharpGameModes.PlayerData.Storage/SharpGameModes.PlayerData.Storage.csproj" />
+    <Project Path="src/SharpGameModes.PlayerData/SharpGameModes.PlayerData.csproj" />
+    <Project Path="src/SharpGameModes.PlayerModels/SharpGameModes.PlayerModels.csproj" />
+    <Project Path="src/SharpGameModes.RoleSound/SharpGameModes.RoleSound.csproj" />
+    <Project Path="src/SharpGameModes.Rules/SharpGameModes.Rules.csproj" />
+    <Project Path="src/SharpGameModes.TeamDeathmatch/SharpGameModes.TeamDeathmatch.csproj" />
+    <Project Path="src/SharpGameModes.WorkshopMount/SharpGameModes.WorkshopMount.csproj" />
+    <Project Path="src/SharpGameModes.ZombieInfection/SharpGameModes.ZombieInfection.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/SharpGameModes.BotMatch.Tests/SharpGameModes.BotMatch.Tests.csproj" />
+    <Project Path="tests/SharpGameModes.Cosmetics.Tests/SharpGameModes.Cosmetics.Tests.csproj" />
+    <Project Path="tests/SharpGameModes.Domain.Tests/SharpGameModes.Domain.Tests.csproj" />
+    <Project Path="tests/SharpGameModes.PlayerData.Tests/SharpGameModes.PlayerData.Tests.csproj" />
+    <Project Path="tests/SharpGameModes.RoleSound.Tests/SharpGameModes.RoleSound.Tests.csproj" />
+    <Project Path="tests/SharpGameModes.WorkshopMount.Tests/SharpGameModes.WorkshopMount.Tests.csproj" />
+  </Folder>
+  <Folder Name="/tools/">
+    <Project Path="tools/SharpGameModes.BotProfile.Pack/SharpGameModes.BotProfile.Pack.csproj" />
+    <Project Path="tools/SharpGameModes.Cosmetics.Import/SharpGameModes.Cosmetics.Import.csproj" />
+    <Project Path="tools/SharpGameModes.PlayerData.Audit/SharpGameModes.PlayerData.Audit.csproj" />
+  </Folder>
+</Solution>

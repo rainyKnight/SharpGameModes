@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <AssemblyName>SharpGameModes.PlayerData.Audit</AssemblyName>
+    <RootNamespace>SharpGameModes.PlayerData.Audit</RootNamespace>
+    <Description>Read-only audit for SharpGameModes player-rating databases.</Description>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../../src/SharpGameModes.PlayerData.Storage/SharpGameModes.PlayerData.Storage.csproj" />
+  </ItemGroup>
+</Project>

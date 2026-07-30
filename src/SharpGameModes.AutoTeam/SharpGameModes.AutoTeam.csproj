@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <AssemblyName>SharpGameModes.AutoTeam</AssemblyName>
+    <RootNamespace>SharpGameModes.AutoTeam</RootNamespace>
+    <Description>Classic team lock and rating-aware balancing for ModSharp.</Description>
+    <EnableDynamicLoading>true</EnableDynamicLoading>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="ModSharp.Sharp.Shared" PrivateAssets="all" ExcludeAssets="runtime" />
+    <PackageReference Include="ModSharp.Sharp.Modules.AdminManager.Shared" PrivateAssets="all" ExcludeAssets="runtime" />
+    <PackageReference Include="ModSharp.Sharp.Modules.TargetingManager.Shared" PrivateAssets="all" ExcludeAssets="runtime" />
+    <ProjectReference Include="../SharpGameModes.Contracts/SharpGameModes.Contracts.csproj" Private="false" ExcludeAssets="runtime" />
+    <ProjectReference Include="../SharpGameModes.Domain/SharpGameModes.Domain.csproj" Private="false" ExcludeAssets="runtime" />
+  </ItemGroup>
+</Project>

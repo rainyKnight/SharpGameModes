@@ -1,0 +1,38 @@
+// Example configuration. Replace the stock models with resources mounted by
+// your own Workshop addon, then set Enabled to true. A model without "side"
+// is available to both teams.
+{
+  "Enabled": false,
+  "Prefix": "[PlayerModels]",
+  "Models": {
+    "example_t": {
+      "name": "Example T model",
+      "path": "characters/models/tm_phoenix/tm_phoenix.vmdl",
+      "side": "T",
+      "disableleg": false
+    },
+    "example_ct": {
+      "name": "Example CT model",
+      "path": "characters/models/ctm_sas/ctm_sas.vmdl",
+      "side": "CT",
+      "disableleg": false
+    },
+    "example_both": {
+      "name": "Example model for both teams",
+      "path": "characters/models/ctm_fbi/ctm_fbi.vmdl",
+      "disableleg": false
+    }
+  },
+  "ModelChangeCooldownSecond": 30,
+  "Inspection": {
+    "Enable": true,
+    "Mode": "rotation"
+  },
+  "BasicPermission": "",
+  "DisableDefaultModelLeg": false,
+  "DisableInstantChange": false,
+  "DisablePrecache": false,
+  "DisableRandomModel": false,
+  "DisableAutoCheck": false,
+  "DisablePlayerSelection": false
+}

@@ -1,0 +1,24 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v10.0/linux-x64",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v10.0": {},
+    ".NETCoreApp,Version=v10.0/linux-x64": {
+      "Sharp.Modules.ClientPreferences.Shared/2.1.1": {
+        "runtime": {
+          "Sharp.Modules.ClientPreferences.Shared.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Sharp.Modules.ClientPreferences.Shared/2.1.1": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

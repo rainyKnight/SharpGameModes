@@ -1,0 +1,57 @@
+{
+  "Logger": {
+    "Template": {
+      "File": "[{Timestamp:yyyy/MM/dd HH:mm:ss.fff}] | {Level} | {SourceContext}{Scope} {MapName} {NewLine}{Message:lj}{NewLine}{Exception}{NewLine}",
+      "Console": "[{Timestamp:MM/dd HH:mm:ss}] | {Level} | {SourceContext}{Scope} {MapName} {NewLine}{Message:lj}{NewLine}{Exception}{NewLine}"
+    },
+    "LogLevel": {
+      "Default": "Verbose",
+      "Microsoft": "Information",
+      "System.Net.Http": "Warning"
+    }
+  },
+  "ChatCommand.TriggerPrefixes": {
+    "Public": [
+      "!",
+      "."
+    ],
+    "Silent": [
+      "/",
+      "`"
+    ]
+  },
+  "MenuManager": {
+    "KeyBindings": {
+      "MoveUpCursor": {
+        "Type": 1,
+        "Button": "Forward"
+      },
+      "MoveDownCursor": {
+        "Type": 1,
+        "Button": "Back"
+      },
+      "GoBack": {
+        "Type": 1,
+        "Button": "Reload"
+      },
+      "Confirm": {
+        "Type": 1,
+        "Button": "Use"
+      },
+      "Exit": {
+        "Type": 1,
+        "Button": "Scoreboard"
+      }
+    },
+    "Colors": {
+      "Key": "#DDAA11",
+      "Text": "#ffffff",
+      "Disabled": "#888888",
+      "Cursor": "#3399FF"
+    }
+  },
+  "ConnectionStrings": {
+    "ClientPreferences": "litedb://Filename={sharp::data}/client-preferences.db;Mode=Exclusive;Flush=true",
+    "AdminCommands.SQLStorage": "mysql://Server=localhost;Port=3306;Database=modsharp;User ID=your_user_name_goes_here;Password=your_password_goes_here;"
+  }
+}

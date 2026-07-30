@@ -1,0 +1,12 @@
+{
+  // Example only. Add your own SteamID64 administrators in a private deployment copy.
+  "PermissionCollection": {},
+  "Roles": [
+    {
+      "Name": "root",
+      "Immunity": 255,
+      "Permissions": ["*"]
+    }
+  ],
+  "Admins": []
+}

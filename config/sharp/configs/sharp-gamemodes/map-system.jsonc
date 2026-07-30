@@ -1,0 +1,48 @@
+{
+  // Example configuration. Adjust vote thresholds for your own community.
+  "schema_version": 1,
+  "enabled": true,
+  // Relative paths are resolved from game/sharp.
+  "state_path": "data/sharp-gamemodes/map-system-state.json",
+  "vote": {
+    "duration_seconds": 25,
+    "maps_in_vote": 5,
+    "remember_played_maps": 3
+  },
+  "map_change": {
+    "delay_after_match_seconds": 8
+  },
+  "rtv": {
+    "enabled": true,
+    "initial_delay_seconds": 30,
+    "required_ratio": 0.5,
+    "cooldown_seconds_after_vote": 0
+  },
+  "nomination": {
+    "enabled": true,
+    "page_size": 5
+  },
+  "mode_auto_change_rules": {
+    "classic": {
+      "enabled": true,
+      "auto_change_mode": "rounds",
+      "vote_start_round": 8
+    },
+    "tdm": {
+      "enabled": true,
+      "auto_change_mode": "rounds",
+      "vote_start_round": 1
+    },
+    "zombie": {
+      "enabled": true,
+      "auto_change_mode": "rounds_sum",
+      "vote_start_round": 3,
+      "change_after_round": 6
+    },
+    "botmatch": {
+      "enabled": true,
+      "auto_change_mode": "rounds",
+      "vote_start_round": 8
+    }
+  }
+}

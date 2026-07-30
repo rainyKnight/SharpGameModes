@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <AssemblyName>SharpGameModes.MapSystem</AssemblyName>
+    <RootNamespace>SharpGameModes.MapSystem</RootNamespace>
+    <Description>Map pools, voting and mode activation for SharpGameModes.</Description>
+    <EnableDynamicLoading>true</EnableDynamicLoading>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="ModSharp.Sharp.Shared" PrivateAssets="all" ExcludeAssets="runtime" />
+    <ProjectReference Include="../SharpGameModes.Contracts/SharpGameModes.Contracts.csproj" Private="false" ExcludeAssets="runtime" />
+    <ProjectReference Include="../SharpGameModes.Domain/SharpGameModes.Domain.csproj" Private="false" ExcludeAssets="runtime" />
+  </ItemGroup>
+</Project>

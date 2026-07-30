@@ -1,0 +1,31 @@
+{
+  // Example configuration. Keep SteamID lists and rating overrides private.
+  "enabled": true,
+  "prefix": "[AutoTeam]",
+  "lock_team_select": true,
+  "auto_assign_on_join": true,
+  "balance_on_round_start": true,
+  "disable_native_team_balance": true,
+  "allowed_count_deviation": 0,
+  "round_randomize_mode": "balance_only",
+  "round_start_balance_delay_seconds": 0.2,
+  "use_player_data_for_balance": true,
+  "balance_health_by_rating": true,
+  "counter_terrorist_ratio": 1,
+  "terrorist_ratio": 1,
+  "default_rating": 1.0,
+  "health_compensation_state_path": "data/sharp-gamemodes/autoteamlock_health_compensation.json",
+  "health_compensation_blacklist": [],
+  "observer_whitelist": [],
+  "low_rating_health_compensation": {
+    "enabled": true,
+    "target_rating": 1.0,
+    "max_health": 1000,
+    "learning_rate": 0.35,
+    "rating_ema_alpha": 0.3,
+    "minimum_rounds": 8,
+    "rating_error_deadband": 0.1,
+    "max_health_adjustment_ratio": 0.1
+  },
+  "rating_overrides": {}
+}

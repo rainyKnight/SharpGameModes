@@ -1,0 +1,17 @@
+{
+  // Example team-deathmatch settings.
+  "enabled": true,
+  "prefix": "[TDM]",
+  "score_limit": 100,
+  "match_time_limit_seconds": 600,
+  "respawn_delay_seconds": 1.5,
+  "default_primary": "ak",
+  "default_secondary": "de",
+  "default_grenade": "hegrenade",
+  "spawn_full_armor": true,
+  "spawn_helmet": true,
+  "respawn_immunity_seconds": 5,
+  "match_end_fallback_delay_seconds": 4,
+  "show_buy_help_on_round_start": true,
+  "buy_help_message": "{prefix} 输入 !guns 查看武器指令，例如 !ak、!a1、!awp、!de，也支持 ！ 和 . 前缀。"
+}

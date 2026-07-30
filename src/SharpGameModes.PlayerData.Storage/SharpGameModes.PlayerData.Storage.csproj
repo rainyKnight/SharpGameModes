@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <AssemblyName>SharpGameModes.PlayerData.Storage</AssemblyName>
+    <RootNamespace>SharpGameModes.PlayerData.Storage</RootNamespace>
+    <Description>SQLite persistence for player match history and ratings.</Description>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Data.Sqlite" />
+    <!-- Direct pin overrides Microsoft.Data.Sqlite's older vulnerable native bundle. -->
+    <PackageReference Include="SQLitePCLRaw.bundle_e_sqlite3" />
+    <ProjectReference Include="../SharpGameModes.Contracts/SharpGameModes.Contracts.csproj" />
+  </ItemGroup>
+</Project>

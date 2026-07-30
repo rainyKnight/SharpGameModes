@@ -1,0 +1,18 @@
+<Project>
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageVersion Include="ModSharp.Sharp.Shared" Version="2.1.136" />
+    <PackageVersion Include="ModSharp.Sharp.Modules.AdminManager.Shared" Version="2.1.136" />
+    <PackageVersion Include="ModSharp.Sharp.Modules.ClientPreferences.Shared" Version="2.1.136" />
+    <PackageVersion Include="ModSharp.Sharp.Modules.MenuManager.Shared" Version="2.1.136" />
+    <PackageVersion Include="ModSharp.Sharp.Modules.TargetingManager.Shared" Version="2.1.136" />
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="18.8.1" />
+    <PackageVersion Include="Microsoft.Data.Sqlite" Version="10.0.10" />
+    <PackageVersion Include="SQLitePCLRaw.bundle_e_sqlite3" Version="3.0.4" />
+    <PackageVersion Include="ValvePak" Version="4.0.0.142" />
+    <PackageVersion Include="xunit" Version="2.9.3" />
+    <PackageVersion Include="xunit.runner.visualstudio" Version="3.1.5" />
+  </ItemGroup>
+</Project>

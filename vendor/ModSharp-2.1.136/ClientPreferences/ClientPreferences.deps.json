@@ -1,0 +1,162 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v10.0/linux-x64",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v10.0": {},
+    ".NETCoreApp,Version=v10.0/linux-x64": {
+      "ClientPreferences/2.1.1": {
+        "dependencies": {
+          "LiteDB": "5.0.21",
+          "MySqlConnector": "2.6.0",
+          "Refit": "10.2.0",
+          "StackExchange.Redis": "3.0.0"
+        },
+        "runtime": {
+          "ClientPreferences.dll": {}
+        }
+      },
+      "LiteDB/5.0.21": {
+        "runtime": {
+          "lib/netstandard2.0/LiteDB.dll": {
+            "assemblyVersion": "5.0.21.0",
+            "fileVersion": "5.0.21.0"
+          }
+        }
+      },
+      "Microsoft.Extensions.DependencyInjection.Abstractions/10.0.9": {
+        "runtime": {
+          "lib/net10.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.926.27113"
+          }
+        }
+      },
+      "Microsoft.Extensions.Logging.Abstractions/10.0.9": {
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "10.0.9"
+        },
+        "runtime": {
+          "lib/net10.0/Microsoft.Extensions.Logging.Abstractions.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.926.27113"
+          }
+        }
+      },
+      "MySqlConnector/2.6.0": {
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "10.0.9",
+          "Microsoft.Extensions.Logging.Abstractions": "10.0.9"
+        },
+        "runtime": {
+          "lib/net10.0/MySqlConnector.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.6.0.0"
+          }
+        }
+      },
+      "Refit/10.2.0": {
+        "runtime": {
+          "lib/net10.0/Refit.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.2.0.0"
+          }
+        }
+      },
+      "RESPite/3.0.0": {
+        "runtime": {
+          "lib/net10.0/RESPite.dll": {
+            "assemblyVersion": "3.0.0.0",
+            "fileVersion": "3.0.0.11234"
+          }
+        }
+      },
+      "StackExchange.Redis/3.0.0": {
+        "dependencies": {
+          "Microsoft.Extensions.Logging.Abstractions": "10.0.9",
+          "RESPite": "3.0.0",
+          "System.IO.Hashing": "10.0.5"
+        },
+        "runtime": {
+          "lib/net10.0/StackExchange.Redis.dll": {
+            "assemblyVersion": "3.0.0.0",
+            "fileVersion": "3.0.0.11234"
+          }
+        }
+      },
+      "System.IO.Hashing/10.0.5": {
+        "runtime": {
+          "lib/net10.0/System.IO.Hashing.dll": {
+            "assemblyVersion": "10.0.0.5",
+            "fileVersion": "10.0.526.15411"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "ClientPreferences/2.1.1": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "LiteDB/5.0.21": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ykJ7ffFl7P9YQKR/PLci6zupiLrsSCNkOTiw6OtzntH7d2kCYp5L1+3a/pksKgTEHcJBoPXFtg7VZSGVBseN9w==",
+      "path": "litedb/5.0.21",
+      "hashPath": "litedb.5.0.21.nupkg.sha512"
+    },
+    "Microsoft.Extensions.DependencyInjection.Abstractions/10.0.9": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-g41l/30G3K4B/d/L8kjux0+30e27c8D0FVQ/PFCpbekgfDpj9mnDhieP67EqXWvl1EWNeZh2rpR4F5B/jcDOHA==",
+      "path": "microsoft.extensions.dependencyinjection.abstractions/10.0.9",
+      "hashPath": "microsoft.extensions.dependencyinjection.abstractions.10.0.9.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Logging.Abstractions/10.0.9": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-9S/DFt4cohlMPpzIxjG6kk0L8MuN2vDm9pbMCulxtJzzk82oJHVLBd8vuQxaPskaYQwKqmFmbannf5eoChgjYg==",
+      "path": "microsoft.extensions.logging.abstractions/10.0.9",
+      "hashPath": "microsoft.extensions.logging.abstractions.10.0.9.nupkg.sha512"
+    },
+    "MySqlConnector/2.6.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-YLceXhrEznpXf8XkwvH6JWHjAq0AA2lsf/zYWiESe4B9ki2v473XH2GRcPbLwktBqYu1Uy3Dvs7G+mu48QKL2w==",
+      "path": "mysqlconnector/2.6.0",
+      "hashPath": "mysqlconnector.2.6.0.nupkg.sha512"
+    },
+    "Refit/10.2.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-zwPmA4p0ZDCeg0/z0hRUXj4aS0y0mlJ8TSri4pz4e0MWmRXAtjSVeQdnkyRah2f6+I0JlP14UqMQW4N8u/hVeg==",
+      "path": "refit/10.2.0",
+      "hashPath": "refit.10.2.0.nupkg.sha512"
+    },
+    "RESPite/3.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-RLUe1U5VzdY0gZxXIFAWy8YS6ChUPpcnQkdMg5KkITaSO4YkVdK4Vvq0zsmXeqx/q5rhaIjCUgxnKH4j+6r/RA==",
+      "path": "respite/3.0.0",
+      "hashPath": "respite.3.0.0.nupkg.sha512"
+    },
+    "StackExchange.Redis/3.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-New/RKMZmVYFhkiS0eegY1YUnFlspcZUhoerUNLiA96rZxgTNhNc07go1CgIjU9JArdLXB4oB4PQvD0y350Aaw==",
+      "path": "stackexchange.redis/3.0.0",
+      "hashPath": "stackexchange.redis.3.0.0.nupkg.sha512"
+    },
+    "System.IO.Hashing/10.0.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-8IBJWcCT9+e4Bmevm4T7+fQEiAh133KGiz4oiVTgJckd3Q76OFdR1falgn9lpz7+C4HJvogCDJeAa2QmvbeVtg==",
+      "path": "system.io.hashing/10.0.5",
+      "hashPath": "system.io.hashing.10.0.5.nupkg.sha512"
+    }
+  }
+}

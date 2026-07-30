@@ -1,0 +1,50 @@
+// Example classic pool using only stock CS2 maps.
+{
+  "mode": "classic",
+  "display_name": "Classic",
+  "auto_team": {
+    "enabled": true,
+    "lock_team_select": true,
+    "auto_assign_on_join": true,
+    "balance_on_round_start": true,
+    "disable_native_team_balance": true,
+    "ct_ratio": 1,
+    "t_ratio": 1,
+    "allowed_count_deviation": 0,
+    "round_randomize_mode": "first_round_then_balance",
+    "round_start_balance_delay_seconds": 0.2,
+    "record_player_data": true,
+    "use_player_data_for_balance": true,
+    "balance_health_by_rating": true,
+    "print_top_players_to_chat": true
+  },
+  "maps": {
+    "de_dust2": {
+      "enabled": true,
+      "display_name": "Dust II",
+      "workshop": false,
+      "workshop_id": "",
+      "min_players": 0,
+      "max_players": 64,
+      "weight": 1
+    },
+    "de_mirage": {
+      "enabled": true,
+      "display_name": "Mirage",
+      "workshop": false,
+      "workshop_id": "",
+      "min_players": 0,
+      "max_players": 64,
+      "weight": 1
+    },
+    "de_inferno": {
+      "enabled": true,
+      "display_name": "Inferno",
+      "workshop": false,
+      "workshop_id": "",
+      "min_players": 0,
+      "max_players": 64,
+      "weight": 1
+    }
+  }
+}

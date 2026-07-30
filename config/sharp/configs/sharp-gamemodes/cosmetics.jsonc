@@ -1,0 +1,14 @@
+{
+  // Example configuration. Player selections are stored outside Git.
+  "enabled": true,
+  "weapon_skins_enabled": true,
+  "knives_enabled": true,
+  "database_path": "data/sharp-gamemodes/cosmetics.db",
+  "weapon_skin_catalog_path": "data/sharp-gamemodes/cosmetics/skins_en.json",
+  "spawn_apply_delay_seconds": 0.1,
+  "default_wear": 0.01,
+  "default_seed": 0,
+  "prefix": "[Cosmetics]",
+  "weapon_skin_commands": ["s", "skins", "paints"],
+  "knife_commands": ["k", "knife", "knives"]
+}

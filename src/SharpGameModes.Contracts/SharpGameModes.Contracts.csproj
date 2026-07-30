@@ -1,0 +1,7 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <AssemblyName>SharpGameModes.Contracts</AssemblyName>
+    <RootNamespace>SharpGameModes.Contracts</RootNamespace>
+    <Description>Stable shared interfaces for the SharpGameModes module suite.</Description>
+  </PropertyGroup>
+</Project>

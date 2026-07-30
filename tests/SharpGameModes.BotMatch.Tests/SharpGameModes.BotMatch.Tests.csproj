@@ -1,0 +1,58 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="ModSharp.Sharp.Shared" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" />
+    <PackageReference Include="xunit" />
+    <PackageReference Include="xunit.runner.visualstudio" PrivateAssets="all" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="../../src/SharpGameModes.Contracts/SharpGameModes.Contracts.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="../../src/SharpGameModes.BotMatch/BotAimPolicy.cs" Link="BotAimPolicy.cs" />
+    <Compile Include="../../src/SharpGameModes.BotMatch/NadeLineupCatalog.cs" Link="NadeLineupCatalog.cs" />
+    <Compile Include="../../src/SharpGameModes.BotMatch/NadeSystemPolicy.cs" Link="NadeSystemPolicy.cs" />
+    <Compile Include="../../src/SharpGameModes.BotMatch/BotStatePolicy.cs" Link="BotStatePolicy.cs" />
+    <Compile Include="../../src/SharpGameModes.BotMatch/BotBuyPolicy.cs" Link="BotBuyPolicy.cs" />
+    <Compile Include="../../src/SharpGameModes.BotMatch/BotBuyChatPolicy.cs" Link="BotBuyChatPolicy.cs" />
+    <Compile Include="../../src/SharpGameModes.BotMatch/BotAiPatchEncoding.cs" Link="BotAiPatchEncoding.cs" />
+    <Compile Include="../../src/SharpGameModes.BotMatch/BotAiLinuxPatchDefinitions.cs" Link="BotAiLinuxPatchDefinitions.cs" />
+    <Compile Include="../../src/SharpGameModes.BotMatch/BotAiWindowsPatchDefinitions.cs" Link="BotAiWindowsPatchDefinitions.cs" />
+    <Compile Include="../../src/SharpGameModes.BotMatch/BotDifficultyTierPolicy.cs" Link="BotDifficultyTierPolicy.cs" />
+    <Compile Include="../../src/SharpGameModes.BotMatch/BotProfileSourceResolver.cs" Link="BotProfileSourceResolver.cs" />
+    <Compile Include="../../src/SharpGameModes.BotMatch/BotProfileValidationPolicy.cs" Link="BotProfileValidationPolicy.cs" />
+    <Compile Include="../../src/SharpGameModes.BotMatch/RoundDamageRecapPolicy.cs" Link="RoundDamageRecapPolicy.cs" />
+    <Compile Include="../../src/SharpGameModes.BotMatch/BotIdentityCatalog.cs" Link="BotIdentityCatalog.cs" />
+    <Compile Include="../../src/SharpGameModes.BotMatch/BotIdentityPresentationPolicy.cs" Link="BotIdentityPresentationPolicy.cs" />
+    <Compile Include="../../src/SharpGameModes.BotMatch/BotUserInfoPolicy.cs" Link="BotUserInfoPolicy.cs" />
+    <Compile Include="../../src/SharpGameModes.BotMatch/BotCosmeticModels.cs" Link="BotCosmeticModels.cs" />
+    <Compile Include="../../src/SharpGameModes.BotMatch/BotCosmeticStateStore.cs" Link="BotCosmeticStateStore.cs" />
+    <Compile Include="../../src/SharpGameModes.BotMatch/BotCosmeticAssets.cs" Link="BotCosmeticAssets.cs" />
+    <Compile Include="../../src/SharpGameModes.BotMatch/BotCosmeticRoller.cs" Link="BotCosmeticRoller.cs" />
+    <Compile Include="../../src/SharpGameModes.BotMatch/BotCosmeticCatalog.cs" Link="BotCosmeticCatalog.cs" />
+    <Compile Include="../../src/SharpGameModes.BotMatch/BotCosmeticCharmPlacements.cs" Link="BotCosmeticCharmPlacements.cs" />
+    <Compile Include="../../src/SharpGameModes.BotMatch/BotCosmeticWearAllocator.cs" Link="BotCosmeticWearAllocator.cs" />
+    <Compile Include="../../src/SharpGameModes.BotMatch/BotCosmeticAttributeEncoding.cs" Link="BotCosmeticAttributeEncoding.cs" />
+    <Compile Include="../../src/SharpGameModes.BotMatch/BotCosmeticItemIds.cs" Link="BotCosmeticItemIds.cs" />
+    <Compile Include="../../src/SharpGameModes.BotMatch/BotControllerStateStore.cs" Link="BotControllerStateStore.cs" />
+    <Compile Include="../../src/SharpGameModes.BotMatch/BotMotionStore.cs" Link="BotMotionStore.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="../../config/sharp/configs/sharp-gamemodes/botmatch-grenades/**/*"
+          LinkBase="Config/sharp/configs/sharp-gamemodes/botmatch-grenades"
+          CopyToOutputDirectory="PreserveNewest" />
+    <None Include="../../config/sharp/configs/sharp-gamemodes/botmatch-cosmetics/**/*"
+          LinkBase="Config/sharp/configs/sharp-gamemodes/botmatch-cosmetics"
+          CopyToOutputDirectory="PreserveNewest" />
+    <None Include="../../config/sharp/configs/sharp-gamemodes/botmatch-identities/**/*"
+          LinkBase="Config/sharp/configs/sharp-gamemodes/botmatch-identities"
+          CopyToOutputDirectory="PreserveNewest" />
+    <None Include="../../config/csgo/overrides/HLTVTop10/botprofile.db"
+          Link="Config/csgo/overrides/HLTVTop10/botprofile.db"
+          CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

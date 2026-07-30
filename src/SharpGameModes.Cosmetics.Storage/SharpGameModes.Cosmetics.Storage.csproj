@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <AssemblyName>SharpGameModes.Cosmetics.Storage</AssemblyName>
+    <RootNamespace>SharpGameModes.Cosmetics.Storage</RootNamespace>
+    <Description>SQLite persistence for SharpGameModes weapon paints and knives.</Description>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Data.Sqlite" />
+    <PackageReference Include="SQLitePCLRaw.bundle_e_sqlite3" />
+  </ItemGroup>
+</Project>

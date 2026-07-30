@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <AssemblyName>SharpGameModes.RoleSound</AssemblyName>
+    <RootNamespace>SharpGameModes.RoleSound</RootNamespace>
+    <Description>Model-based role voices for ModSharp.</Description>
+    <EnableDynamicLoading>true</EnableDynamicLoading>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="ModSharp.Sharp.Shared" PrivateAssets="all" ExcludeAssets="runtime" />
+    <ProjectReference Include="../SharpGameModes.Contracts/SharpGameModes.Contracts.csproj" Private="false" ExcludeAssets="runtime" />
+  </ItemGroup>
+</Project>

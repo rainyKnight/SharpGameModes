@@ -1,0 +1,26 @@
+namespace SharpGameModes.PlayerData.Storage;
+
+public sealed record PlayerMatchWrite(
+    ulong SteamId,
+    string PlayerName,
+    string MapName,
+    DateTimeOffset RecordedAt,
+    int RoundsPlayed,
+    double Rating,
+    double Impact,
+    double Kast,
+    double Adr,
+    double KillsPerRound,
+    double DeathsPerRound,
+    double AssistsPerRound,
+    int Kills,
+    int Deaths,
+    int Assists,
+    int Damage,
+    int Headshots,
+    int EntryKills,
+    int EntryDeaths,
+    int MultiKillRounds,
+    int ClutchesWon,
+    int KastRounds,
+    int SurvivedRounds);

@@ -1,0 +1,66 @@
+{
+  "mode": "botmatch",
+  "display_name": "强化人机",
+  "auto_team": {
+    "enabled": false,
+    "lock_team_select": false,
+    "auto_assign_on_join": false,
+    "balance_on_round_start": false,
+    "disable_native_team_balance": false,
+    "ct_ratio": 1,
+    "t_ratio": 1,
+    "allowed_count_deviation": 0,
+    "round_randomize_mode": "balance_only",
+    "round_start_balance_delay_seconds": 0.2,
+    "record_player_data": false,
+    "use_player_data_for_balance": false,
+    "balance_health_by_rating": false,
+    "print_top_players_to_chat": false
+  },
+  "maps": {
+    "de_mirage": {
+      "display_name": "荒漠迷城",
+      "max_players": 64
+    },
+    "de_inferno": {
+      "display_name": "炼狱小镇",
+      "max_players": 64
+    },
+    "de_anubis": {
+      "display_name": "阿努比斯",
+      "max_players": 64
+    },
+    "de_ancient": {
+      "display_name": "远古遗迹",
+      "max_players": 64
+    },
+    "de_dust2": {
+      "display_name": "炙热沙城",
+      "max_players": 64
+    },
+    "de_overpass": {
+      "display_name": "死亡游乐园",
+      "max_players": 64
+    },
+    "de_vertigo": {
+      "display_name": "殒命大厦",
+      "max_players": 64
+    },
+    "de_train": {
+      "display_name": "列车停放站",
+      "max_players": 64
+    },
+    "de_cache": {
+      "display_name": "死城之谜",
+      "max_players": 64
+    },
+    "cs_office": {
+      "display_name": "办公室",
+      "max_players": 64
+    },
+    "cs_italy": {
+      "display_name": "意大利小镇",
+      "max_players": 64
+    }
+  }
+}

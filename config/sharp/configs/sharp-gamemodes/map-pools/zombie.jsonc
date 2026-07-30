@@ -1,0 +1,27 @@
+// Example zombie pool. A dedicated zombie map can be added as a Workshop entry.
+{
+  "mode": "zombie",
+  "display_name": "Zombie Infection",
+  "auto_team": {
+    "enabled": false,
+    "lock_team_select": false,
+    "auto_assign_on_join": false,
+    "balance_on_round_start": false,
+    "disable_native_team_balance": false,
+    "record_player_data": false,
+    "use_player_data_for_balance": false,
+    "balance_health_by_rating": false,
+    "print_top_players_to_chat": false
+  },
+  "maps": {
+    "de_dust2": {
+      "enabled": true,
+      "display_name": "Dust II (example)",
+      "workshop": false,
+      "workshop_id": "",
+      "min_players": 0,
+      "max_players": 64,
+      "weight": 1
+    }
+  }
+}

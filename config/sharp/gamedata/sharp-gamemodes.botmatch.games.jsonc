@@ -1,0 +1,9 @@
+{
+  "VFuncs": {
+    // CNetworkGameServerBase::UserInfoChanged(CPlayerSlot).
+    "CNetworkGameServer::UserInfoChanged": {
+      "linux": 80,
+      "windows": 75
+    }
+  }
+}

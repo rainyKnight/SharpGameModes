@@ -1,0 +1,6 @@
+{
+  // Example mode selection. Keep deployment-specific choices outside Git.
+  "schema_version": 1,
+  "default_mode": "classic",
+  "enabled_modes": ["classic", "tdm", "zombie", "botmatch"]
+}

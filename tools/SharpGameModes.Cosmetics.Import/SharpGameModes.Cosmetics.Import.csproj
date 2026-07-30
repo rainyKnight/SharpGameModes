@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <AssemblyName>SharpGameModes.Cosmetics.Import</AssemblyName>
+    <RootNamespace>SharpGameModes.Cosmetics.Import</RootNamespace>
+    <Description>Imports WeaponPaints preferences into SharpGameModes Cosmetics SQLite storage.</Description>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../../src/SharpGameModes.Cosmetics.Storage/SharpGameModes.Cosmetics.Storage.csproj" />
+  </ItemGroup>
+</Project>

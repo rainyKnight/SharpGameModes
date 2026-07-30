@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <AssemblyName>SharpGameModes.PlayerModels</AssemblyName>
+    <RootNamespace>SharpGameModes.PlayerModels</RootNamespace>
+    <Description>PMC-compatible player model selection implemented with ModSharp APIs.</Description>
+    <EnableDynamicLoading>true</EnableDynamicLoading>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="ModSharp.Sharp.Shared" PrivateAssets="all" ExcludeAssets="runtime" />
+    <PackageReference Include="ModSharp.Sharp.Modules.AdminManager.Shared" PrivateAssets="all" ExcludeAssets="runtime" />
+    <PackageReference Include="ModSharp.Sharp.Modules.MenuManager.Shared" PrivateAssets="all" ExcludeAssets="runtime" />
+    <Reference Include="Sharp.Modules.ClientPreferences.Shared">
+      <HintPath>../../vendor/ModSharp-2.1.136/Sharp.Modules.ClientPreferences.Shared/Sharp.Modules.ClientPreferences.Shared.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <ProjectReference Include="../SharpGameModes.Contracts/SharpGameModes.Contracts.csproj" Private="false" ExcludeAssets="runtime" />
+    <ProjectReference Include="../SharpGameModes.Domain/SharpGameModes.Domain.csproj" Private="false" ExcludeAssets="runtime" />
+  </ItemGroup>
+</Project>

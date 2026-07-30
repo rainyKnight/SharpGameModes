@@ -1,0 +1,30 @@
+{
+  // Example configuration. Never commit live player databases or SteamID lists.
+  "enabled": true,
+  "record_player_data": true,
+  // Relative paths are resolved from game/sharp.
+  "database_path": "data/sharp-gamemodes/autoteamlock_player_data.db",
+  "history_limit": 100,
+  "trade_window_seconds": 5,
+  "map_blacklist": [],
+  "data_write_skip_whitelist": [],
+  "print_top_players_to_chat": true,
+  "top_players_chat_title": "{gold}Player Rating Leaderboard{default}",
+  "rating_formula": {
+    "kast_coefficient": 0.0073,
+    "kill_coefficient": 0.3591,
+    "death_coefficient": -0.5329,
+    "impact_coefficient": 0.2372,
+    "damage_coefficient": 0.0032,
+    "rating_intercept": 0.1587,
+    "impact_kill_coefficient": 2.13,
+    "impact_assist_coefficient": 0.42,
+    "impact_intercept": -0.41,
+    "multi_kill_impact_bonus": 0.15,
+    "clutch_win_impact_bonus": 0.25,
+    "entry_kill_impact_bonus": 0.15,
+    "entry_death_impact_penalty": 0.1,
+    "min_round_rating": 0,
+    "max_round_rating": 3
+  }
+}

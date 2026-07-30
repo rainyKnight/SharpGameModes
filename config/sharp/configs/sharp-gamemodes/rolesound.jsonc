@@ -1,0 +1,125 @@
+// Example configuration. RoleSound is disabled until the referenced sound
+// resources are provided by your own Workshop addon. Every event key present
+// in the reference configuration is listed with placeholder resources.
+{
+  "ConfigVersion": 1,
+  "Enabled": false,
+  "ChatPrefix": "[RoleSound]",
+  "SoundScanRoot": "",
+  "SoundPathPrefix": "sounds/rolesound",
+  "SoundEventResources": [
+    "soundevents/example_rolesound.vsndevts"
+  ],
+  "SoundEventTemplate": "rolesound.{profile}.{sound_event}",
+  "PlaybackMode": "SoundEvent",
+  "ClientCommandName": "play",
+  "ClientCommandEvents": [],
+  "StripCompiledExtension": true,
+  "BlockDefaultRadio": true,
+  "BlockRadioWhenNoVoice": false,
+  "ShowRadioText": true,
+  "ShowCooldownMessage": true,
+  "RadioAudience": "Nearby",
+  "RadioTextAudience": "Nearby",
+  "RadioTextFormat": "{role}: {text}",
+  "CooldownMessageFormat": "{role}: radio cooldown: {seconds}s",
+  "NearbyDistance": 900,
+  "Volume": 0.5,
+  "Pitch": 1,
+  "EnableReload": false,
+  "EnableDeath": true,
+  "EnableRadio": true,
+  "EnableHurt": true,
+  "EnableKill": true,
+  "EnableThrow": true,
+  "EnableRoundStart": true,
+  "EnableRoundEnd": true,
+  "RoundStartDelaySeconds": 1,
+  "DefaultVoiceProfile": "example_voice",
+  "CooldownsSeconds": {
+    "reload": 5,
+    "death": 5,
+    "kill": 5,
+    "radio": 5,
+    "hurt": 5,
+    "throw": 5,
+    "round_start": 5,
+    "round_end": 5
+  },
+  "SoundEventNames": {
+    "reload": "reload",
+    "death": "dead",
+    "kill": "kill",
+    "hurt": "pain",
+    "throw": "throw",
+    "round_start": "start",
+    "round_end": "win",
+    "radio.roger": "roger",
+    "radio.negative": "negative",
+    "radio.cheer": "cheer",
+    "radio.holdpos": "holdpos",
+    "radio.followme": "followme",
+    "radio.thanks": "thanks",
+    "radio.generic": "roger",
+    "spell": "spell"
+  },
+  "RadioCommandToKey": {
+    "roger": "roger",
+    "negative": "negative",
+    "cheer": "cheer",
+    "holdpos": "holdpos",
+    "followme": "followme",
+    "thanks": "thanks"
+  },
+  "RadioSlotToKey": {
+    "1": "roger",
+    "2": "negative",
+    "3": "cheer",
+    "4": "holdpos",
+    "5": "followme",
+    "6": "thanks"
+  },
+  "ModelFolderToVoiceProfile": {
+    "example_model": "example_voice"
+  },
+  "ModelPathToVoiceProfile": {},
+  "EventFallbackVoiceProfiles": {},
+  "EventKeywords": {
+    "reload": ["reload"],
+    "death": ["dead", "death"],
+    "kill": ["kill"],
+    "hurt": ["hurt", "pain"],
+    "throw": ["throw"],
+    "round_start": ["round_start", "start"],
+    "round_end": ["round_end", "win"],
+    "radio.roger": ["roger"],
+    "radio.negative": ["negative"],
+    "radio.cheer": ["cheer"],
+    "radio.holdpos": ["holdpos"],
+    "radio.followme": ["followme"],
+    "radio.thanks": ["thanks"],
+    "radio.generic": ["radio", "generic"],
+    "spell": ["spell"]
+  },
+  "VoiceProfiles": {
+    "example_voice": {
+      "Events": {
+        "reload": ["sounds/rolesound/example_voice/reload.vsnd_c"],
+        "death": ["sounds/rolesound/example_voice/dead.vsnd_c"],
+        "kill": ["sounds/rolesound/example_voice/kill.vsnd_c"],
+        "hurt": ["sounds/rolesound/example_voice/pain.vsnd_c"],
+        "throw": ["sounds/rolesound/example_voice/throw.vsnd_c"],
+        "round_start": ["sounds/rolesound/example_voice/start.vsnd_c"],
+        "round_end": ["sounds/rolesound/example_voice/win.vsnd_c"],
+        "radio.roger": ["sounds/rolesound/example_voice/roger.vsnd_c"],
+        "radio.negative": ["sounds/rolesound/example_voice/negative.vsnd_c"],
+        "radio.cheer": ["sounds/rolesound/example_voice/cheer.vsnd_c"],
+        "radio.holdpos": ["sounds/rolesound/example_voice/holdpos.vsnd_c"],
+        "radio.followme": ["sounds/rolesound/example_voice/followme.vsnd_c"],
+        "radio.thanks": ["sounds/rolesound/example_voice/thanks.vsnd_c"],
+        "radio.generic": ["sounds/rolesound/example_voice/roger.vsnd_c"],
+        "spell": ["sounds/rolesound/example_voice/spell.vsnd_c"]
+      }
+    }
+  }
+}

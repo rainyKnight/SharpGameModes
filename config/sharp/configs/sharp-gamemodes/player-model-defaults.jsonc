@@ -1,0 +1,12 @@
+{
+  "DefaultModels": {
+    "all": {
+      "*": {
+        "index": "",
+        "force": false
+      }
+    },
+    "t": {},
+    "ct": {}
+  }
+}

@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <AssemblyName>SharpGameModes.WorkshopMount</AssemblyName>
+    <RootNamespace>SharpGameModes.WorkshopMount</RootNamespace>
+    <Description>Mounts the ModSharp dual-addon Workshop VPK directly into the Source 2 server filesystem.</Description>
+    <EnableDynamicLoading>true</EnableDynamicLoading>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="ModSharp.Sharp.Shared" PrivateAssets="all" ExcludeAssets="runtime" />
+  </ItemGroup>
+</Project>

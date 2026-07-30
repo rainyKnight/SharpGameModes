@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" />
+    <PackageReference Include="xunit" />
+    <PackageReference Include="xunit.runner.visualstudio" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="../../src/SharpGameModes.RoleSound/RoleSoundCatalog.cs" Link="RoleSoundCatalog.cs" />
+    <Compile Include="../../src/SharpGameModes.RoleSound/RoleSoundConfig.cs" Link="RoleSoundConfig.cs" />
+  </ItemGroup>
+</Project>
