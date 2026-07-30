@@ -702,10 +702,9 @@ public sealed class AutoTeamModule : IModSharpModule, IGameListener, IClientList
             var registry = adminManager.GetCommandRegistry(ModuleIdentity);
             ImmutableArray<string> permissions = [ForceTeamPermission];
             registry.RegisterPermissions(permissions);
-            registry.RegisterAdminCommand("forcect", OnForceCtCommand, permissions);
-            registry.RegisterAdminCommand("forcet", OnForceTCommand, permissions);
-            registry.RegisterAdminCommand("forcespec", OnForceSpecCommand, permissions);
-            registry.RegisterAdminCommand("forceteam", OnForceTeamCommand, permissions);
+            registry.RegisterAdminCommand("fct", OnForceCtCommand, permissions);
+            registry.RegisterAdminCommand("ft", OnForceTCommand, permissions);
+            registry.RegisterAdminCommand("f", OnForceCommand, permissions);
             registry.RegisterAdminCommand("autoteam_reload", OnReloadCommand, permissions);
             registry.RegisterAdminCommand("autoteam_status", OnStatusCommand, permissions);
             _adminCommandsRegisteredWith = adminManager;
@@ -723,14 +722,11 @@ public sealed class AutoTeamModule : IModSharpModule, IGameListener, IClientList
     private void OnForceTCommand(IGameClient? issuer, StringCommand command)
         => ForceTargetsToTeam(issuer, command, CStrikeTeam.TE);
 
-    private void OnForceSpecCommand(IGameClient? issuer, StringCommand command)
-        => ForceTargetsToTeam(issuer, command, CStrikeTeam.Spectator);
-
-    private void OnForceTeamCommand(IGameClient? issuer, StringCommand command)
+    private void OnForceCommand(IGameClient? issuer, StringCommand command)
     {
         if (command.ArgCount < 2)
         {
-            Reply(issuer, command, "用法：ms_forceteam <玩家|@all|@ct|@t|@spec> <ct|t|spec>");
+            Reply(issuer, command, "用法：ms_f <玩家|@all|@ct|@t|@spec> <ct|t|spec>");
             return;
         }
 

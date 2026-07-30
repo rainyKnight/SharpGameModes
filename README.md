@@ -116,7 +116,7 @@ See [`config/README.md`](config/README.md) for configuration details and [`docs/
 - Bot grenade mode: `!bot_nades [off|less|normal|more|max]`
 - Reroll bot cosmetics: `!br_reroll [all|slot]`
 - Damage recap style: `!damage_style [auto|classic|pw]`
-- Administrative team changes: `!forcect`, `!forcet`, `!forcespec`, `!forceteam`
+- Administrative team changes: `!fct <target>`, `!ft <target>`, `!f <target> <ct|t|spec>`
 
 Administrative commands use ModSharp's AdminManager and TargetingManager. Team-management commands require the `admin:team` permission.
 
