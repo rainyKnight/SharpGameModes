@@ -30,6 +30,7 @@ templates accept `{prefix}`. The map-system source notice has its own
 `source_offer.prefix`; an empty value hides only the label, not the source
 message.
 
-`map-system.jsonc` also contains the public corresponding-source URL shown on
-join and by `!source`. Forks and modified deployments should update that URL to
-the exact source they make available to players.
+`map-system.jsonc` also contains the public corresponding-source URL shown by
+`!source`. Its join notice is disabled by default. Forks and modified
+deployments should update that URL to the exact source they make available to
+players.

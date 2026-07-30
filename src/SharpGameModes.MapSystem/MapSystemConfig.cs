@@ -108,7 +108,7 @@ public sealed class RtvConfig
 
 public sealed class SourceOfferConfig
 {
-    public bool ShowOnJoin { get; init; } = true;
+    public bool ShowOnJoin { get; init; }
     public double JoinDelaySeconds { get; init; } = 8;
     public string Url { get; init; } = "https://github.com/rainyKnight/SharpGameModes";
     public string Prefix { get; init; } = "[SharpGameModes]";

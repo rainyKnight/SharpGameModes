@@ -6,8 +6,8 @@ only (`AGPL-3.0-only`). The complete project license is in [`LICENSE`](LICENSE).
 This file records the upstream material included in, adapted by, or used to
 build the project. SharpGameModes changes to upstream bot components were made
 during July 2026. The default configuration offers the corresponding source
-for an installed build through the configurable `!source` command and join
-notice.
+for an installed build through the configurable `!source` command; an optional
+join notice is available but disabled by default.
 
 ## BotMatch source and data
 

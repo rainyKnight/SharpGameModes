@@ -128,10 +128,10 @@ SharpGameModes is released under the
 [GNU Affero General Public License version 3 only](LICENSE)
 (`AGPL-3.0-only`).
 
-The default map-system configuration presents the corresponding-source URL to
-players after they join and through `!source`. Anyone distributing or running
-a modified version should publish its complete corresponding source and change
-`source_offer.url` to that location.
+The map-system exposes the corresponding-source URL through `!source`. An
+optional join notice is available but disabled by default. Anyone distributing
+or running a modified version should publish its complete corresponding source
+and change `source_offer.url` to that location.
 
 BotMatch ports and modifies code or data from
 [`ed0ard/CS2-Bot-Improver`](https://github.com/ed0ard/CS2-Bot-Improver),

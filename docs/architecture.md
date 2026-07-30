@@ -67,9 +67,10 @@ RTV, nominations, votes, and map-change state belong to `SharpGameModes.MapSyste
 
 The AGPL corresponding-source notice also belongs to MapSystem because that
 module is active across every supported mode and already owns the common chat
-commands. It prints the configured URL after a human joins and on
-`!source`/`!源码`; it is timer-driven and performs no per-frame work. Modified
-deployments must point the URL at their own complete corresponding source.
+commands. It prints the configured URL on `!source`/`!源码`; the optional,
+timer-driven join notice is disabled by default and performs no per-frame
+work. Modified deployments must point the URL at their own complete
+corresponding source.
 
 After a completed match, `SharpGameModes.PlayerData` publishes an immutable result. `SharpGameModes.AutoTeam` consumes that result to update its health-feedback state. Player statistics and SQLite storage therefore remain separate from health-balancing rules, while AutoTeam does not query the match database directly.
 

@@ -262,7 +262,7 @@ public sealed class ClassicConfigContractTests
         Assert.Equal(30, rtv.GetProperty("initial_delay_seconds").GetInt32());
         Assert.Equal(0.5, rtv.GetProperty("required_ratio").GetDouble());
         Assert.Equal(5, root.GetProperty("nomination").GetProperty("page_size").GetInt32());
-        Assert.True(sourceOffer.GetProperty("show_on_join").GetBoolean());
+        Assert.False(sourceOffer.GetProperty("show_on_join").GetBoolean());
         Assert.Equal("https://github.com/rainyKnight/SharpGameModes", sourceOffer.GetProperty("url").GetString());
         Assert.Contains(
             "source",
