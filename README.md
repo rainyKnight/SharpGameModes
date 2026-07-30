@@ -86,8 +86,6 @@ The repository provides sanitized, runnable examples in:
 
 `admins.jsonc` contains no administrators by default. Player-model and role-sound examples are disabled, while the Classic, TDM, and Zombie map pools contain a small set of stock examples. The BotMatch map pool and its upstream feature data remain complete.
 
-Keep live SteamIDs, administrators, models, voice assets, Workshop selections, databases, passwords, and tokens outside the repository. Do not commit a live `sharp/data/` directory or private deployment configuration.
-
 ### Chat prefixes
 
 Module labels are read from configuration:
