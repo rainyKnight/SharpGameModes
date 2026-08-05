@@ -15,6 +15,7 @@ mkdir -p \
     "$OUT/sharp/shared/SharpGameModes.Domain" \
     "$OUT/sharp/shared/Sharp.Modules.ClientPreferences.Shared" \
     "$OUT/sharp/configs" \
+    "$OUT/sharp/gamedata" \
     "$OUT/sharp/data/sharp-gamemodes" \
     "$OUT/csgo/cfg"
 
@@ -62,6 +63,7 @@ cp -R "$ROOT/vendor/ModSharp-2.1.136/Sharp.Modules.ClientPreferences.Shared/." \
 cp -R "$ROOT/config/sharp/configs/sharp-gamemodes" "$OUT/sharp/configs/"
 cp "$ROOT/config/sharp/configs/admins.jsonc" "$OUT/sharp/configs/"
 cp "$ROOT/config/sharp/configs/core.json" "$OUT/sharp/configs/"
+cp "$ROOT/config/sharp/gamedata/sharp-gamemodes.botmatch.games.jsonc" "$OUT/sharp/gamedata/"
 cp -R "$ROOT/config/sharp/data/sharp-gamemodes/cosmetics" "$OUT/sharp/data/sharp-gamemodes/"
 cp -R "$ROOT/config/csgo/cfg/sharp-gamemodes" "$OUT/csgo/cfg/"
 cp -R "$ROOT/config/csgo/overrides" "$OUT/csgo/"
@@ -95,6 +97,7 @@ test -f "$OUT/sharp/configs/sharp-gamemodes/botmatch.jsonc"
 test -f "$OUT/sharp/configs/sharp-gamemodes/botmatch-identities/bot_info.json"
 test -f "$OUT/sharp/configs/sharp-gamemodes/botmatch-identities/UPSTREAM-LICENSE"
 test -f "$OUT/sharp/configs/sharp-gamemodes/map-pools/botmatch.jsonc"
+test -f "$OUT/sharp/gamedata/sharp-gamemodes.botmatch.games.jsonc"
 test -f "$OUT/sharp/data/sharp-gamemodes/cosmetics/skins_en.json"
 test -f "$OUT/sharp/data/sharp-gamemodes/cosmetics/README.md"
 test -f "$OUT/sharp/data/sharp-gamemodes/cosmetics/UPSTREAM-LICENSE"
