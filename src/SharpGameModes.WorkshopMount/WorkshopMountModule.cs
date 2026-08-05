@@ -3,21 +3,26 @@ using Microsoft.Extensions.Logging;
 using Sharp.Shared;
 using Sharp.Shared.Listeners;
 using Sharp.Shared.Managers;
+using Sharp.Shared.Objects;
 
 namespace SharpGameModes.WorkshopMount;
 
-public sealed class WorkshopMountModule : IModSharpModule, IGameListener
+public sealed class WorkshopMountModule : IModSharpModule, IGameListener, IClientListener
 {
     private const int PathAddToHead = 0;
     private const int SearchPathPriorityVpk = 2;
 
     private readonly IModSharp _modSharp;
+    private readonly IClientManager _clients;
     private readonly IFileManager _files;
+    private readonly ISharedSystem _shared;
     private readonly ILogger<WorkshopMountModule> _logger;
     private readonly string _gameRoot;
     private WorkshopVpkPath? _vpk;
+    private WorkshopClientAdvertisementRuntime? _clientAdvertisement;
     private string? _mountedPath;
     private bool _listenerInstalled;
+    private bool _clientListenerInstalled;
 
     public WorkshopMountModule(
         ISharedSystem sharedSystem,
@@ -27,7 +32,9 @@ public sealed class WorkshopMountModule : IModSharpModule, IGameListener
         IConfiguration coreConfiguration,
         bool hotReload)
     {
+        _shared = sharedSystem;
         _modSharp = sharedSystem.GetModSharp();
+        _clients = sharedSystem.GetClientManager();
         _files = sharedSystem.GetFileManager();
         _logger = sharedSystem.GetLoggerFactory().CreateLogger<WorkshopMountModule>();
         _gameRoot = Path.GetFullPath(Path.Combine(sharpPath, ".."));
@@ -56,8 +63,22 @@ public sealed class WorkshopMountModule : IModSharpModule, IGameListener
             return false;
         }
 
+        _clientAdvertisement = new WorkshopClientAdvertisementRuntime(
+            _shared,
+            addonId,
+            _logger);
+        if (!_clientAdvertisement.Activate())
+        {
+            _clientAdvertisement.Dispose();
+            _clientAdvertisement = null;
+            _vpk = null;
+            return false;
+        }
+
         _modSharp.InstallGameListener(this);
+        _clients.InstallClientListener(this);
         _listenerInstalled = true;
+        _clientListenerInstalled = true;
 
         // This covers a module hot reload. Source 2 rebuilds GAME paths while starting
         // a map, so OnServerInit mounts the VPK again for normal server startup.
@@ -67,7 +88,11 @@ public sealed class WorkshopMountModule : IModSharpModule, IGameListener
         }
 
         _modSharp.RemoveGameListener(this);
+        _clients.RemoveClientListener(this);
         _listenerInstalled = false;
+        _clientListenerInstalled = false;
+        _clientAdvertisement.Dispose();
+        _clientAdvertisement = null;
         _vpk = null;
         return false;
     }
@@ -118,6 +143,12 @@ public sealed class WorkshopMountModule : IModSharpModule, IGameListener
 
     public void Shutdown()
     {
+        if (_clientListenerInstalled)
+        {
+            _clients.RemoveClientListener(this);
+            _clientListenerInstalled = false;
+        }
+
         if (_listenerInstalled)
         {
             _modSharp.RemoveGameListener(this);
@@ -125,7 +156,25 @@ public sealed class WorkshopMountModule : IModSharpModule, IGameListener
         }
 
         RemoveMountedPath();
+        _clientAdvertisement?.Dispose();
+        _clientAdvertisement = null;
         _vpk = null;
+    }
+
+    public void OnClientConnected(IGameClient client)
+    {
+        if (client.IsFakeClient || _clientAdvertisement is not { } runtime)
+        {
+            return;
+        }
+
+        var snapshot = runtime.GetSnapshot();
+        _logger.LogInformation(
+            "Workshop client handshake completed: replies {Replies}, advertised {Advertised}, preserved Workshop-map replies {Preserved}, errors {Errors}.",
+            snapshot.Replies,
+            snapshot.Advertised,
+            snapshot.Preserved,
+            snapshot.Errors);
     }
 
     private void RemoveMountedPath()

@@ -16,7 +16,7 @@ SharpGameModes is a collection of ModSharp plugins for CS2 community servers. It
 | `SharpGameModes.RoleSound` | Model-based voice profiles and radio replacement |
 | `SharpGameModes.TeamDeathmatch` | Team scoring, respawning, equipment, and weapon menus |
 | `SharpGameModes.ZombieInfection` | Infection rounds, conversion, models, weapons, knife damage, and knockback |
-| `SharpGameModes.WorkshopMount` | Mounts single-file or multipart Workshop VPKs supplied through `-dual_addon` |
+| `SharpGameModes.WorkshopMount` | Mounts single-file or multipart `-dual_addon` VPKs and advertises the resource addon during client connection |
 | `SharpGameModes.BotMatch` | Bot AI, aiming, state handling, purchases, grenades, identities, cosmetics, and damage recaps |
 
 The available modes are `classic`, `tdm`, `zombie`, and `botmatch`. A mode module runs only while its mode is active. When the server leaves that mode, the module restores its ConVars, hooks, memory patches, timers, and per-player state.
@@ -66,6 +66,8 @@ Writing `userinfo` is unsafe on some CS2 builds, so the native `BOT` scoreboard 
 - The official ModSharp `AdminManager`, `CommandCenter`, `TargetingManager`, and `MenuManager` modules
 
 The release package contains the project modules, example configuration, BotProfile tiers, BotMatch data, the matching official ClientPreferences modules, and all project and third-party license notices. Install it into an existing CS2 server with ModSharp.
+
+`SharpGameModes.WorkshopMount` uses the Workshop ID passed as `-dual_addon` for both server-side VPK mounting and the client connection reply. On Valve maps, a client may reconnect once while CS2 downloads or activates the resource addon. Replies that already contain a Workshop map or a multi-addon sequence are left to ModSharp's built-in map-change handling.
 
 ## Build
 
@@ -137,6 +139,8 @@ BotMatch ports and modifies code or data from
 and [`XBribo/CS2-Bot-Hider`](https://github.com/XBribo/CS2-Bot-Hider).
 The weapon-paint catalog comes from
 [`Nereziel/cs2-WeaponPaints`](https://github.com/Nereziel/cs2-WeaponPaints).
+The Workshop connection-reply behavior is adapted from
+[`Source2ZE/MultiAddonManager`](https://github.com/Source2ZE/MultiAddonManager).
 
 Exact commits, component mappings, modification notices, dependency versions,
 and retained license texts are listed in

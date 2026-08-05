@@ -28,6 +28,19 @@ The implementation also consulted
 as a behavior reference. No source code or binary from that project is
 distributed.
 
+## Workshop client advertisement
+
+The connection-reply behavior in `SharpGameModes.WorkshopMount` is adapted
+from [Source2ZE/MultiAddonManager](https://github.com/Source2ZE/MultiAddonManager),
+snapshot `464cd8ab5d71622ebde3280a1849c444c0935489`. MultiAddonManager is
+copyright (C) 2024-2025 xen and licensed under GPL-3.0-only. SharpGameModes
+reimplements the relevant `ReplyConnection` detour through ModSharp, limits
+it to the configured `-dual_addon` on Valve-map replies, and leaves Workshop
+map and multi-addon sequencing to ModSharp's existing state machine. No
+MultiAddonManager binary, MetaMod plugin, or funchook code is distributed.
+The retained GPL-3.0 text is in
+[`LICENSES/GPL-3.0-MultiAddonManager.txt`](LICENSES/GPL-3.0-MultiAddonManager.txt).
+
 ## ModSharp
 
 The packaged official `ClientPreferences` module and

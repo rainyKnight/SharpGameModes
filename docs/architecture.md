@@ -12,7 +12,7 @@ flowchart LR
     C --> R["SharpGameModes.Rules\nDamage policy"]
     C --> CO["SharpGameModes.Cosmetics\nWeapon finishes and knives"]
     C --> PM["SharpGameModes.PlayerModels\nHuman player models"]
-    W["SharpGameModes.WorkshopMount\nWorkshop VPK mounting"] --> PM
+    W["SharpGameModes.WorkshopMount\nWorkshop VPK and client advertisement"] --> PM
     W --> RS["SharpGameModes.RoleSound\nCharacter voices"]
     M --> CL["Classic\nImplemented"]
     M --> TD["TDM\nImplemented"]
@@ -51,7 +51,7 @@ flowchart LR
 | `SharpGameModes.PlayerModels` | Human-player model menus, T/CT selection, precaching, and ClientPreferences storage | Bot cosmetics, VPK mounting, zombie models |
 | `SharpGameModes.Cosmetics` | Weapon finishes and knives with independent SQLite preferences | Bot cosmetics, player models, mode rules, map pools, duplicate glove or agent systems |
 | `SharpGameModes.Cosmetics.Storage` | Cosmetic-preference SQLite schema and storage | Game entities and menus |
-| `SharpGameModes.WorkshopMount` | Adds the single-file or multipart VPK supplied by `-dual_addon` to the server `GAME` search path during module load and `OnServerInit` | Applying player models, Workshop client negotiation, resource extraction |
+| `SharpGameModes.WorkshopMount` | Adds the single-file or multipart VPK supplied by `-dual_addon` to the server `GAME` search path and advertises the resource addon in Valve-map connection replies | Applying player models, owning Workshop map changes or multi-addon sequencing, resource extraction |
 | `SharpGameModes.RoleSound` | Resolves character voices from the active model and replaces radio audio | Player-model selection, mode rules, resource extraction |
 | `SharpGameModes.TeamDeathmatch` | TDM scoring, respawning, equipment, and weapon selection | Map pools, voting, rating persistence |
 | `SharpGameModes.ZombieInfection` | Infection rounds, roles, conversion, models, weapons, and knockback | Map pools, voting, ratings, hard-coded address offsets |
@@ -90,6 +90,7 @@ Mode definitions accept `classic`, `tdm`, `zombie`, and `botmatch`. The compatib
 - Zombie countdown and round HUD updates use one timer chain that runs once per second. They do not scan all entities every frame. Landing velocity is sampled with constant work in the player-command hook.
 - Cosmetic catalogs and SQLite preferences are loaded into memory once during initialization. Weapons are updated only when granted, equipped, restored after spawn, or changed by a player.
 - Workshop VPKs are mounted once during module initialization. Multipart packages pass the base path without the `_dir` suffix to Source 2, which resolves the `_dir` and `_###` volumes without copying or extracting them.
+- Client addon advertisement runs only while Source 2 builds a connection reply. It temporarily replaces one pointer for an empty or matching Valve-map addon field, calls the original engine function, and immediately restores the field. Replies containing a Workshop map or multiple addons are preserved for ModSharp's existing map-change state machine; no frame hook is used.
 
 ## Official modules
 

@@ -2,9 +2,10 @@
   <PropertyGroup>
     <AssemblyName>SharpGameModes.WorkshopMount</AssemblyName>
     <RootNamespace>SharpGameModes.WorkshopMount</RootNamespace>
-    <Description>Mounts the ModSharp dual-addon Workshop VPK directly into the Source 2 server filesystem.</Description>
+    <Description>Mounts a ModSharp dual-addon VPK and advertises it to clients during connection.</Description>
     <EnableDynamicLoading>true</EnableDynamicLoading>
     <PlatformTarget>x64</PlatformTarget>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="ModSharp.Sharp.Shared" PrivateAssets="all" ExcludeAssets="runtime" />
