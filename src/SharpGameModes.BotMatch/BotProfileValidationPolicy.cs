@@ -1,3 +1,5 @@
+using System.Security.Cryptography;
+
 namespace SharpGameModes.BotMatch;
 
 internal static class BotProfileValidationPolicy
@@ -7,6 +9,19 @@ internal static class BotProfileValidationPolicy
     public static bool TryValidate(
         int resolvedDatabaseBytes,
         long expectedDatabaseBytes,
+        out string error)
+        => TryValidate(
+            resolvedDatabaseBytes,
+            expectedDatabaseBytes,
+            [],
+            [],
+            out error);
+
+    public static bool TryValidate(
+        int resolvedDatabaseBytes,
+        long expectedDatabaseBytes,
+        ReadOnlySpan<byte> resolvedSha256,
+        ReadOnlySpan<byte> expectedSha256,
         out string error)
     {
         if (resolvedDatabaseBytes <= 0)
@@ -19,8 +34,20 @@ internal static class BotProfileValidationPolicy
         {
             if (resolvedDatabaseBytes == expectedDatabaseBytes)
             {
-                error = string.Empty;
-                return true;
+                if (expectedSha256.IsEmpty
+                    || (resolvedSha256.Length == expectedSha256.Length
+                        && CryptographicOperations.FixedTimeEquals(
+                            resolvedSha256,
+                            expectedSha256)))
+                {
+                    error = string.Empty;
+                    return true;
+                }
+
+                error =
+                    "the GAME search path resolved the expected byte length, " +
+                    "but its SHA-256 fingerprint differs from the selected source";
+                return false;
             }
 
             error =

@@ -80,6 +80,59 @@ internal sealed class BotIdentityRuntime : IDisposable, IBotHider
     public bool IsEnabled => _config.HideBotIdentity;
     public bool IsActive => _active;
 
+    public bool NormalizeInactiveBotName(IGameClient client)
+    {
+        if (!_config.NormalizeInactiveBotNames
+            || _active
+            || !client.IsValid
+            || client.IsHltv
+            || !client.IsFakeClient)
+        {
+            return false;
+        }
+
+        var slot = client.Slot.AsPrimitive();
+        if (slot is < 0 or >= 64)
+        {
+            return false;
+        }
+
+        lock (_gate)
+        {
+            if (_active || !client.IsValid || !client.IsFakeClient)
+            {
+                return false;
+            }
+
+            try
+            {
+                var name = StockBotNamePolicy.ForSlot(slot);
+                if (!string.Equals(client.Name, name, StringComparison.Ordinal))
+                {
+                    client.SetName(name);
+                }
+
+                if (client.GetPlayerController() is { IsValidEntity: true } controller
+                    && !string.Equals(controller.PlayerName, name, StringComparison.Ordinal))
+                {
+                    controller.PlayerName = name;
+                    controller.NetworkStateChanged("m_iszPlayerName");
+                }
+
+                return true;
+            }
+            catch (Exception exception)
+            {
+                Interlocked.Increment(ref _presentationErrors);
+                _logger.LogDebug(
+                    exception,
+                    "Failed to normalize inactive Bot name for slot {Slot}.",
+                    slot);
+                return false;
+            }
+        }
+    }
+
     public bool Activate()
     {
         if (!IsEnabled)

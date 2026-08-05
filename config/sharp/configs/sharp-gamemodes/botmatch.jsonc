@@ -15,6 +15,8 @@
   // Use the selected catalog name here so the pure ModSharp package keeps
   // each visible name aligned with its Steam profile even without that override.
   "use_bot_info_names": true,
+  // Replace process-global professional BotProfile names with stock-style names outside BotMatch.
+  "normalize_inactive_bot_names": true,
   "synthetic_steam_id_base": 76561199500000000,
   "fake_ping_min": 18,
   "fake_ping_max": 72,

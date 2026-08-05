@@ -25,6 +25,7 @@
     <Compile Include="../../src/SharpGameModes.BotMatch/BotDifficultyTierPolicy.cs" Link="BotDifficultyTierPolicy.cs" />
     <Compile Include="../../src/SharpGameModes.BotMatch/BotProfileSourceResolver.cs" Link="BotProfileSourceResolver.cs" />
     <Compile Include="../../src/SharpGameModes.BotMatch/BotProfileValidationPolicy.cs" Link="BotProfileValidationPolicy.cs" />
+    <Compile Include="../../src/SharpGameModes.BotMatch/StockBotNamePolicy.cs" Link="StockBotNamePolicy.cs" />
     <Compile Include="../../src/SharpGameModes.BotMatch/RoundDamageRecapPolicy.cs" Link="RoundDamageRecapPolicy.cs" />
     <Compile Include="../../src/SharpGameModes.BotMatch/BotIdentityCatalog.cs" Link="BotIdentityCatalog.cs" />
     <Compile Include="../../src/SharpGameModes.BotMatch/BotIdentityPresentationPolicy.cs" Link="BotIdentityPresentationPolicy.cs" />

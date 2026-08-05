@@ -54,7 +54,9 @@ After installing the package, run:
 ./scripts/configure-botprofile-searchpath.sh <game-root> <Low|Medium|HLTVTop10|High>
 ```
 
-The script places the selected `botprofile.vpk` before `Game sharp` in `gameinfo.gi` and preserves the first backup it creates. At startup, BotMatch verifies the size of the database actually parsed by the engine and refuses activation if validation fails.
+The script places the selected `botprofile.vpk` before `Game sharp` in `gameinfo.gi` and preserves the first backup it creates. At startup, BotMatch verifies both the byte length and SHA-256 fingerprint of the database actually parsed by the engine and refuses activation if validation fails.
+
+CS2 loads BotProfile data for the whole server process. Outside BotMatch, all BotMatch AI, aiming, grenade, cosmetic, and identity-disguise runtimes are disabled; frozen native Bots are also normalized to stock-style names by default so professional player names do not leak into other modes. Set `normalize_inactive_bot_names` to `false` to preserve the process-wide profile names.
 
 Writing `userinfo` is unsafe on some CS2 builds, so the native `BOT` scoreboard label is not forcibly hidden by default. Names, latency, crosshairs, medals, and avatars continue to work. BotController voice frames and automatic bot voting are not currently implemented.
 

@@ -29,9 +29,10 @@ selected VPK before `Game sharp` in `gameinfo.gi`; mounting the directory
 itself is insufficient because the stock CS2 VPK still wins that lookup.
 
 `SharpGameModes.BotMatch` verifies during ModSharp module initialization and every
-server initialization that the engine filesystem resolves the exact byte size
-of the selected source `botprofile.db`. BotMatch activation is blocked if that
-verification fails instead of silently falling back to the stock CS2 profiles.
+server initialization that the engine filesystem resolves both the exact byte
+size and SHA-256 fingerprint of the selected source `botprofile.db`. BotMatch
+activation is blocked if that verification fails instead of silently falling
+back to the stock CS2 profiles.
 
 The runtime loads the VPK but uses the auditable raw database beside it as the
 expected byte length. A raw-only directory remains a compatibility fallback

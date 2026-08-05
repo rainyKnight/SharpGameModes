@@ -341,6 +341,10 @@ public sealed class BotMatchModule : IModSharpModule, IGameListener, IClientList
             _damageRecap?.ResetMap();
             ScheduleBotQuotaReconciliation(1);
         }
+        else
+        {
+            ScheduleInactiveBotNameNormalization(0.5);
+        }
     }
 
     public void OnResourcePrecache()
@@ -365,6 +369,7 @@ public sealed class BotMatchModule : IModSharpModule, IGameListener, IClientList
         _modeContextSubscription = null;
         _modeContext = null;
         Deactivate();
+        ScheduleInactiveBotNameNormalization(0.1);
     }
 
     public void Shutdown()
@@ -440,6 +445,11 @@ public sealed class BotMatchModule : IModSharpModule, IGameListener, IClientList
         {
             _botIdentity?.OnClientConnected(client);
         }
+        else
+        {
+            _botIdentity?.NormalizeInactiveBotName(client);
+            ScheduleInactiveBotNameNormalization(client, 0.2);
+        }
     }
 
     public void OnClientPutInServer(IGameClient client)
@@ -450,6 +460,12 @@ public sealed class BotMatchModule : IModSharpModule, IGameListener, IClientList
             ScheduleIdentityReconcile(client, 0.2);
             StartIdentityFastApplyWindow();
             ScheduleBotTeamBalance();
+        }
+        else
+        {
+            _botIdentity?.NormalizeInactiveBotName(client);
+            ScheduleInactiveBotNameNormalization(client, 0.2);
+            ScheduleInactiveBotNameNormalization(client, 1);
         }
     }
 
@@ -535,6 +551,7 @@ public sealed class BotMatchModule : IModSharpModule, IGameListener, IClientList
         if (next?.Instance is not { } context)
         {
             Deactivate();
+            ScheduleInactiveBotNameNormalization(0.1);
             return;
         }
 
@@ -555,6 +572,8 @@ public sealed class BotMatchModule : IModSharpModule, IGameListener, IClientList
         else
         {
             Deactivate();
+            ScheduleInactiveBotNameNormalization(0.1);
+            ScheduleInactiveBotNameNormalization(1);
         }
     }
 
@@ -2019,6 +2038,57 @@ public sealed class BotMatchModule : IModSharpModule, IGameListener, IClientList
                 if (IsActive && lifecycleGeneration == _lifecycleGeneration)
                 {
                     _botIdentity?.TryAdoptOrRefresh(client);
+                }
+            },
+            delaySeconds,
+            GameTimerFlags.StopOnMapEnd);
+    }
+
+    private void ScheduleInactiveBotNameNormalization(double delaySeconds)
+    {
+        if (!_config.NormalizeInactiveBotNames)
+        {
+            return;
+        }
+
+        var lifecycleGeneration = _lifecycleGeneration;
+        _modSharp.PushTimer(
+            () =>
+            {
+                if (_stopping
+                    || IsActive
+                    || lifecycleGeneration != _lifecycleGeneration)
+                {
+                    return;
+                }
+
+                foreach (var client in _clients.GetGameClients(inGame: false))
+                {
+                    _botIdentity?.NormalizeInactiveBotName(client);
+                }
+            },
+            delaySeconds,
+            GameTimerFlags.StopOnMapEnd);
+    }
+
+    private void ScheduleInactiveBotNameNormalization(
+        IGameClient client,
+        double delaySeconds)
+    {
+        if (!_config.NormalizeInactiveBotNames)
+        {
+            return;
+        }
+
+        var lifecycleGeneration = _lifecycleGeneration;
+        _modSharp.PushTimer(
+            () =>
+            {
+                if (!_stopping
+                    && !IsActive
+                    && lifecycleGeneration == _lifecycleGeneration)
+                {
+                    _botIdentity?.NormalizeInactiveBotName(client);
                 }
             },
             delaySeconds,

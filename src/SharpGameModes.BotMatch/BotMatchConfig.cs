@@ -11,6 +11,7 @@ public sealed class BotMatchConfig
     public double TeamBalanceDelaySeconds { get; init; } = 0.75;
     public bool HideBotIdentity { get; init; } = true;
     public bool UseBotInfoNames { get; init; } = true;
+    public bool NormalizeInactiveBotNames { get; init; } = true;
     public ulong SyntheticSteamIdBase { get; init; } = 76561199500000000UL;
     public int FakePingMin { get; init; } = 18;
     public int FakePingMax { get; init; } = 72;

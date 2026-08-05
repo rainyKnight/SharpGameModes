@@ -1,3 +1,4 @@
+using System.Security.Cryptography;
 using Microsoft.Extensions.Logging;
 using Sharp.Shared.Managers;
 
@@ -21,6 +22,7 @@ internal sealed class BotProfileMountRuntime : IDisposable
     private readonly string _difficultyTier;
     private string? _mountedPath;
     private BotProfileSource? _source;
+    private byte[]? _expectedDatabaseSha256;
     private int _resolvedDatabaseBytes;
     private long _mountAttempts;
     private long _mounts;
@@ -59,15 +61,18 @@ internal sealed class BotProfileMountRuntime : IDisposable
             return false;
         }
 
-        var existingBytes = ResolveDatabaseBytes();
-        if (MatchesSelectedSource(source.Value, existingBytes))
+        _expectedDatabaseSha256 = source.Value.ExpectedDatabaseBytes > 0
+            ? SHA256.HashData(File.ReadAllBytes(source.Value.DatabasePath))
+            : null;
+        var existing = ResolveDatabaseFingerprint();
+        if (MatchesSelectedSource(source.Value, existing))
         {
             _mountedPath = null;
             _source = source;
-            _resolvedDatabaseBytes = existingBytes;
+            _resolvedDatabaseBytes = existing.Bytes;
             Interlocked.Increment(ref _mounts);
             _logger.LogInformation(
-                "Verified BotProfile tier {Tier} from {Source} during {Lifecycle}; the existing GAME search path resolves the exact selected botprofile.db at {Bytes} bytes.",
+                "Verified BotProfile tier {Tier} from {Source} during {Lifecycle}; the existing GAME search path resolves the exact selected botprofile.db at {Bytes} bytes and the expected SHA-256 fingerprint.",
                 source.Value.DifficultyTier,
                 source.Value.DatabasePath,
                 lifecycle,
@@ -88,10 +93,13 @@ internal sealed class BotProfileMountRuntime : IDisposable
             _mountedPath = source.Value.SearchPath;
             _source = source;
 
-            _resolvedDatabaseBytes = ResolveDatabaseBytes();
+            var resolved = ResolveDatabaseFingerprint();
+            _resolvedDatabaseBytes = resolved.Bytes;
             if (!BotProfileValidationPolicy.TryValidate(
                     _resolvedDatabaseBytes,
                     source.Value.ExpectedDatabaseBytes,
+                    resolved.Sha256,
+                    _expectedDatabaseSha256 ?? [],
                     out var validationError))
             {
                 throw new InvalidDataException(
@@ -100,7 +108,7 @@ internal sealed class BotProfileMountRuntime : IDisposable
 
             Interlocked.Increment(ref _mounts);
             _logger.LogInformation(
-                "Mounted BotProfile tier {Tier} from {Source} as a {Format} GAME search path during {Lifecycle}; resolved botprofile.db is {Bytes} bytes.",
+                "Mounted BotProfile tier {Tier} from {Source} as a {Format} GAME search path during {Lifecycle}; resolved botprofile.db is {Bytes} bytes with the expected SHA-256 fingerprint.",
                 source.Value.DifficultyTier,
                 source.Value.DatabasePath,
                 source.Value.Format,
@@ -128,7 +136,8 @@ internal sealed class BotProfileMountRuntime : IDisposable
         return IsReady && source is not null
             ? $"BotProfile ready: tier {source.Value.DifficultyTier}, " +
               $"format {source.Value.Format}, database {source.Value.DatabasePath}, " +
-              $"resolved bytes {_resolvedDatabaseBytes}, mounts {Interlocked.Read(ref _mounts)}/" +
+              $"resolved bytes {_resolvedDatabaseBytes}, fingerprint verified, " +
+              $"mounts {Interlocked.Read(ref _mounts)}/" +
               $"{Interlocked.Read(ref _mountAttempts)}, errors {Interlocked.Read(ref _errors)}."
             : $"BotProfile unavailable: requested tier {_difficultyTier}, root {_overridesRoot}, " +
               $"mounts {Interlocked.Read(ref _mounts)}/{Interlocked.Read(ref _mountAttempts)}, " +
@@ -138,18 +147,28 @@ internal sealed class BotProfileMountRuntime : IDisposable
     public void Dispose()
         => RemoveMountedPath();
 
-    private int ResolveDatabaseBytes()
+    private DatabaseFingerprint ResolveDatabaseFingerprint()
     {
         using var database = _files.OpenFile("botprofile.db", "GAME");
-        return database?.Size() ?? 0;
+        var size = database?.Size() ?? 0;
+        if (database is null || size <= 0)
+        {
+            return new DatabaseFingerprint(size, null);
+        }
+
+        var contents = new byte[size];
+        database.Read(contents);
+        return new DatabaseFingerprint(size, SHA256.HashData(contents));
     }
 
-    private static bool MatchesSelectedSource(
+    private bool MatchesSelectedSource(
         BotProfileSource source,
-        int resolvedBytes)
+        DatabaseFingerprint resolved)
         => BotProfileValidationPolicy.TryValidate(
-            resolvedBytes,
+            resolved.Bytes,
             source.ExpectedDatabaseBytes,
+            resolved.Sha256,
+            _expectedDatabaseSha256 ?? [],
             out _);
 
     private void RemoveMountedPath()
@@ -157,6 +176,7 @@ internal sealed class BotProfileMountRuntime : IDisposable
         if (_mountedPath is not { } path)
         {
             _source = null;
+            _expectedDatabaseSha256 = null;
             _resolvedDatabaseBytes = 0;
             return;
         }
@@ -177,7 +197,12 @@ internal sealed class BotProfileMountRuntime : IDisposable
         {
             _mountedPath = null;
             _source = null;
+            _expectedDatabaseSha256 = null;
             _resolvedDatabaseBytes = 0;
         }
     }
+
+    private readonly record struct DatabaseFingerprint(
+        int Bytes,
+        byte[]? Sha256);
 }

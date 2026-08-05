@@ -24,6 +24,32 @@ public sealed class BotProfileValidationPolicyTests
         Assert.Contains("selected source contains 26914 bytes", error);
     }
 
+    [Fact]
+    public void ExactSelectedSource_RejectsSameLengthWithDifferentFingerprint()
+    {
+        Assert.False(
+            BotProfileValidationPolicy.TryValidate(
+                resolvedDatabaseBytes: 26_914,
+                expectedDatabaseBytes: 26_914,
+                resolvedSha256: [1, 2, 3, 4],
+                expectedSha256: [1, 2, 3, 5],
+                out var error));
+        Assert.Contains("SHA-256 fingerprint differs", error);
+    }
+
+    [Fact]
+    public void ExactSelectedSource_AcceptsSameLengthAndFingerprint()
+    {
+        Assert.True(
+            BotProfileValidationPolicy.TryValidate(
+                resolvedDatabaseBytes: 26_914,
+                expectedDatabaseBytes: 26_914,
+                resolvedSha256: [1, 2, 3, 4],
+                expectedSha256: [1, 2, 3, 4],
+                out var error));
+        Assert.Empty(error);
+    }
+
     [Theory]
     [InlineData(0, false)]
     [InlineData(26_914, false)]
